@@ -1,154 +1,312 @@
-<!DOCTYPE html>
-<html lang="es-CL">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cómo probar la demostración · Postventa</title>
-  <style>
-    :root { --navy:#001b6c; --tinta:#20344f; --gris:#6e7d91; --linea:#e6eaf2; }
-    * { box-sizing:border-box; }
-    body { margin:0; background:#f4f6fb; color:var(--tinta);
-           font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; }
-    .barra { background:var(--navy); color:#fff; padding:9px 20px; font-size:13px; }
-    .barra b { font-size:11px; letter-spacing:.12em; text-transform:uppercase;
-               background:rgba(255,255,255,.16); border-radius:999px; padding:3px 10px; margin-right:10px; }
-    main { max-width:840px; margin:0 auto; padding:30px 20px 70px; }
-    h1 { color:var(--navy); font-size:31px; margin:20px 0 8px; line-height:1.2; }
-    h2 { color:var(--navy); font-size:20px; margin:36px 0 10px; padding-top:20px; border-top:1px solid var(--linea); }
-    h3 { font-size:16.5px; margin:24px 0 4px; color:var(--navy); }
-    .lead { font-size:18px; color:var(--gris); margin:0 0 10px; }
-    table { width:100%; border-collapse:collapse; margin:14px 0; background:#fff;
-            border:1px solid var(--linea); border-radius:10px; overflow:hidden; }
-    th,td { text-align:left; padding:10px 13px; border-bottom:1px solid var(--linea); font-size:14.5px; vertical-align:top; }
-    th { background:#f7f9fd; color:var(--gris); font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; }
-    tr:last-child td { border-bottom:0; }
-    code { background:#eef2fa; padding:2px 7px; border-radius:5px;
-           font:600 14px ui-monospace,Consolas,monospace; color:var(--navy); }
-    ol,ul { padding-left:22px; } li { margin:6px 0; }
-    .nota { background:#fff; border:1px solid var(--linea); border-left:3px solid var(--navy);
-            border-radius:8px; padding:14px 16px; margin:18px 0; font-size:15px; }
-    .modulos { display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:12px; margin:18px 0; }
-    .modulo { background:#fff; border:1px solid var(--linea); border-radius:10px;
-              padding:15px 16px; text-decoration:none; color:inherit; display:block; }
-    .modulo:hover { border-color:var(--navy); }
-    .modulo b { color:var(--navy); display:block; margin-bottom:2px; }
-    .modulo span { font-size:13.5px; color:var(--gris); }
-  </style>
-</head>
-<body>
-<div class="barra"><b>Demostración</b>Plataforma de Postventa</div>
-<main>
-
-  <h1>Cómo probar la plataforma</h1>
-  <p class="lead">Está funcionando de verdad. Puedes agendar, recibir un vehículo y emitir
-     documentos como lo haría un asesor cualquier mañana.</p>
-
-  <div class="nota">
-    Los vehículos, clientes y patentes son inventados para esta demostración. Los precios y
-    las pautas de mantención sí son los reales del catálogo. Nada de lo que hagas se guarda
-    fuera de tu navegador, así que puedes probar sin cuidado: el botón
-    <b>Empezar de nuevo</b> de la barra superior devuelve todo al punto de partida.
-  </div>
-
-  <div class="modulos">
-    <a class="modulo" href="index.html"><b>Inicio</b><span>Los tres módulos</span></a>
-    <a class="modulo" href="cotizador.html"><b>Cotizador</b><span>Valores por marca, modelo y kilometraje</span></a>
-    <a class="modulo" href="taller.html?vista=agenda"><b>Agenda</b><span>Citas y solicitudes de clientes</span></a>
-    <a class="modulo" href="taller.html?vista=recepcion"><b>Recepción</b><span>Recibir el vehículo y emitir el acta</span></a>
-    <a class="modulo" href="cliente.html"><b>Vista del cliente</b><span>La página pública, sin clave</span></a>
-  </div>
-
-  <h2>Vehículos con los que puedes probar</h2>
-  <p>Escribe la patente en el Cotizador o en la búsqueda de Recepción.</p>
-  <table>
-    <thead><tr><th>Patente</th><th>Vehículo</th><th>Cliente</th><th>Qué muestra</th></tr></thead>
-    <tbody>
-      <tr><td><code>KLXH23</code></td><td>Hyundai Accent 2019</td><td>Comercial Los Andes Ltda.</td>
-          <td>Tiene hora <b>hoy a las 09:30</b>. El recorrido completo.</td></tr>
-      <tr><td><code>BFGT45</code></td><td>Hyundai Creta 2022</td><td>Juan Pérez Soto</td>
-          <td>Hora <b>hoy a las 11:00</b>, un segundo auto para el mismo día.</td></tr>
-      <tr><td><code>JRPD67</code></td><td>Mahindra Pik Up 2021</td><td>Transportes El Roble SpA</td>
-          <td>Hora en cuatro días, con una petición escrita por el cliente.</td></tr>
-      <tr><td><code>LSVK89</code></td><td>JAC JS2 2023</td><td>María Fernanda Ortiz</td>
-          <td>Entró como <b>solicitud desde la web</b>, todavía sin confirmar.</td></tr>
-      <tr><td><code>HDNM12</code></td><td>BAIC X25 2020</td><td>Sociedad Agrícola Maitén</td>
-          <td><b>Recibido ayer</b>. Sirve para ver una recepción ya cerrada.</td></tr>
-      <tr><td><code>PPQR34</code></td><td>Hyundai Tucson 2024</td><td><i>sin registro previo</i></td>
-          <td>Un cliente nuevo, que <b>no está en la base</b>.</td></tr>
-      <tr><td><code>ZZZZ99</code></td><td colspan="2"><i>no existe</i></td>
-          <td>Una patente desconocida.</td></tr>
-    </tbody>
-  </table>
-
-  <h2>Cuatro recorridos</h2>
-
-  <h3>1 · Cotizar una mantención y dejarla agendada</h3>
-  <ol>
-    <li>En el <a href="cotizador.html">Cotizador</a>, busca <code>KLXH23</code>. Con la patente basta:
-        aparecen el vehículo y el cliente.</li>
-    <li>Elige una versión y presiona <b>Ver plan de mantención</b>. Verás las operaciones, los repuestos
-        con su disponibilidad en bodega y el valor de cada mantención programada.</li>
-    <li><b>Destilda un repuesto.</b> El cliente que pide "hazme el aceite, pero el filtro de aire no":
-        el total se rehace solo y queda anotado qué no se hizo.</li>
-    <li><b>Descargar PDF</b> emite la orden a nombre del cliente, con lo incluido y lo excluido.</li>
-    <li><b>Agendar</b> lleva la cotización a la agenda del taller, sin volver a escribir nada.</li>
-  </ol>
-
-  <h3>2 · Un cliente que no está en la base</h3>
-  <ol>
-    <li>Busca <code>PPQR34</code>: el auto aparece, el dueño no.</li>
-    <li>Presiona <b>Descargar PDF</b>. Pide los datos antes de emitir el documento, para que la orden
-        no salga sin destinatario.</li>
-    <li>Prueba con un RUT mal escrito, por ejemplo <code>12.345.678-9</code>: lo rechaza por el dígito
-        verificador. El válido es <code>12.345.678-5</code>. Ese número termina en la factura, así que
-        se revisa antes y no después.</li>
-  </ol>
-
-  <h3>3 · Recibir un vehículo y emitir el acta</h3>
-  <ol>
-    <li>En la <a href="taller.html?vista=agenda">Agenda</a> están las horas del día. Presiona
-        <b>Ingresar</b> en cualquiera.</li>
-    <li>Usa el botón <b>Usar fotos de ejemplo</b>. Sin la inspección fotográfica la plataforma no deja
-        recibir el vehículo —es la única prueba del estado en que llegó— y aquí no tienes un auto
-        al lado para fotografiar.</li>
-    <li><b>Marca los daños sobre el diagrama.</b> Eliges el tipo (rayón, abolladura, quebrado, falta
-        una pieza, pintura) y tocas dónde viene. Vale más que describirlo por escrito: "rayón en la
-        puerta trasera derecha" depende de quién cuente las puertas y desde dónde mire.</li>
-    <li>Corrige el <b>teléfono o el correo</b> del cliente si vienen mal. Es el único momento en que
-        está al frente para confirmarlos.</li>
-    <li>Marca o deja sin marcar la <b>autorización para recibir ofertas</b>. Queda impresa en el acta
-        como SÍ o NO, separada de los avisos del servicio, que se envían igual.</li>
-    <li>Firma los dos recuadros con el mouse.</li>
-    <li><b>Ingresar a Taller</b> abre la orden de trabajo y descarga el acta: fotos, mapa de daños,
-        las condiciones generales y el tratamiento de datos personales.</li>
-  </ol>
-
-  <h3>4 · Lo que ve el cliente</h3>
-  <ol>
-    <li>Abre la <a href="cliente.html">vista del cliente</a>. Es pública y no pide clave.</li>
-    <li>Elige un auto y pide una hora. La solicitud aparece en la agenda del taller, en
-        <b>Reservas web</b>, para que un asesor la confirme.</li>
-    <li>Si eliges <b>Ford</b>, te lleva a la agenda de Ford: esa marca se agenda en su propio sistema.</li>
-  </ol>
-
-  <h2>Alcance de esta demostración</h2>
-  <ul>
-    <li><b>Los correos al cliente no se envían.</b> Los tres avisos —al agendar, siete días antes y
-        veinticuatro horas antes— están construidos y probados, pero enviarlos requiere el servidor
-        de correo, que no forma parte de esta demostración.</li>
-    <li><b>Las fotos se pierden si recargas la página.</b> Todo lo demás —horas, recepciones,
-        correcciones— se mantiene.</li>
-    <li>Varias personas pueden trabajar a la vez sobre la misma bandeja de sucursal. Eso se ve con
-        el sistema instalado, no aquí.</li>
-  </ul>
-
-  <h2>Entrar con otro usuario</h2>
-  <p>La demostración abre con la sesión iniciada. Si cierras sesión, entra con cualquier correo
-     terminado en <code>@empresa.demo</code> y la clave <code>demo</code>. Hay cuatro perfiles de
-     ejemplo: <code>demo@</code>, <code>asesor@</code>, <code>tecnico@</code> y <code>jefe@</code>.</p>
-
-</main>
-</body>
-</html>
+<!DOCTYPE html>
+
+<html lang="es-CL">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+  <meta http-equiv="Pragma" content="no-cache">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cómo probar la demostración · Postventa</title>
+
+  <style>
+
+    :root { --navy:#001b6c; --tinta:#20344f; --gris:#6e7d91; --linea:#e6eaf2; }
+
+    * { box-sizing:border-box; }
+
+    body { margin:0; background:#f4f6fb; color:var(--tinta);
+
+           font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; }
+
+    .barra { background:var(--navy); color:#fff; padding:9px 20px; font-size:13px; }
+
+    .barra b { font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+
+               background:rgba(255,255,255,.16); border-radius:999px; padding:3px 10px; margin-right:10px; }
+
+    main { max-width:840px; margin:0 auto; padding:30px 20px 70px; }
+
+    h1 { color:var(--navy); font-size:31px; margin:20px 0 8px; line-height:1.2; }
+
+    h2 { color:var(--navy); font-size:20px; margin:36px 0 10px; padding-top:20px; border-top:1px solid var(--linea); }
+
+    h3 { font-size:16.5px; margin:24px 0 4px; color:var(--navy); }
+
+    .lead { font-size:18px; color:var(--gris); margin:0 0 10px; }
+
+    table { width:100%; border-collapse:collapse; margin:14px 0; background:#fff;
+
+            border:1px solid var(--linea); border-radius:10px; overflow:hidden; }
+
+    th,td { text-align:left; padding:10px 13px; border-bottom:1px solid var(--linea); font-size:14.5px; vertical-align:top; }
+
+    th { background:#f7f9fd; color:var(--gris); font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; }
+
+    tr:last-child td { border-bottom:0; }
+
+    code { background:#eef2fa; padding:2px 7px; border-radius:5px;
+
+           font:600 14px ui-monospace,Consolas,monospace; color:var(--navy); }
+
+    ol,ul { padding-left:22px; } li { margin:6px 0; }
+
+    .nota { background:#fff; border:1px solid var(--linea); border-left:3px solid var(--navy);
+
+            border-radius:8px; padding:14px 16px; margin:18px 0; font-size:15px; }
+
+    .modulos { display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:12px; margin:18px 0; }
+
+    .modulo { background:#fff; border:1px solid var(--linea); border-radius:10px;
+
+              padding:15px 16px; text-decoration:none; color:inherit; display:block; }
+
+    .modulo:hover { border-color:var(--navy); }
+
+    .modulo b { color:var(--navy); display:block; margin-bottom:2px; }
+
+    .modulo span { font-size:13.5px; color:var(--gris); }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="barra"><b>Demostración</b>Plataforma de Postventa</div>
+
+<main>
+
+
+
+  <h1>Cómo probar la plataforma</h1>
+
+  <p class="lead">Está funcionando de verdad. Puedes agendar, recibir un vehículo y emitir
+
+     documentos como lo haría un asesor cualquier mañana.</p>
+  <div class="nota">
+    <b style="display:block;margin-bottom:4px">Lo más rápido: el recorrido guiado.</b>
+    El botón <b>Recorrido guiado</b>, en la barra de arriba, va indicando paso a paso qué
+    hacer y por qué importa, y avanza solo cuando detecta que lo hiciste. Son doce pasos,
+    de la cotización al acta firmada. Si prefieres explorar por tu cuenta, sigue leyendo.
+  </div>
+
+  <div class="nota">
+
+    Los vehículos, clientes y patentes son inventados para esta demostración. Los precios y
+
+    las pautas de mantención sí son los reales del catálogo. Nada de lo que hagas se guarda
+
+    fuera de tu navegador, así que puedes probar sin cuidado: el botón
+
+    <b>Empezar de nuevo</b> de la barra superior devuelve todo al punto de partida.
+
+  </div>
+
+
+
+  <div class="modulos">
+
+    <a class="modulo" href="index.html"><b>Inicio</b><span>Los tres módulos</span></a>
+
+    <a class="modulo" href="cotizador.html"><b>Cotizador</b><span>Valores por marca, modelo y kilometraje</span></a>
+
+    <a class="modulo" href="taller.html?vista=agenda"><b>Agenda</b><span>Citas y solicitudes de clientes</span></a>
+
+    <a class="modulo" href="taller.html?vista=recepcion"><b>Recepción</b><span>Recibir el vehículo y emitir el acta</span></a>
+
+    <a class="modulo" href="cliente.html"><b>Vista del cliente</b><span>La página pública, sin clave</span></a>
+
+  </div>
+
+
+
+  <h2>Vehículos con los que puedes probar</h2>
+
+  <p>Escribe la patente en el Cotizador o en la búsqueda de Recepción.</p>
+
+  <table>
+
+    <thead><tr><th>Patente</th><th>Vehículo</th><th>Cliente</th><th>Qué muestra</th></tr></thead>
+
+    <tbody>
+
+      <tr><td><code>KLXH23</code></td><td>Hyundai Accent 2019</td><td>Comercial Los Andes Ltda.</td>
+
+          <td>Tiene hora <b>hoy a las 09:30</b>. El recorrido completo.</td></tr>
+
+      <tr><td><code>BFGT45</code></td><td>Hyundai Creta 2022</td><td>Juan Pérez Soto</td>
+
+          <td>Hora <b>hoy a las 11:00</b>, un segundo auto para el mismo día.</td></tr>
+
+      <tr><td><code>JRPD67</code></td><td>Mahindra Pik Up 2021</td><td>Transportes El Roble SpA</td>
+
+          <td>Hora en cuatro días, con una petición escrita por el cliente.</td></tr>
+
+      <tr><td><code>LSVK89</code></td><td>JAC JS2 2023</td><td>María Fernanda Ortiz</td>
+
+          <td>Entró como <b>solicitud desde la web</b>, todavía sin confirmar.</td></tr>
+
+      <tr><td><code>HDNM12</code></td><td>BAIC X25 2020</td><td>Sociedad Agrícola Maitén</td>
+
+          <td><b>Recibido ayer</b>. Sirve para ver una recepción ya cerrada.</td></tr>
+
+      <tr><td><code>PPQR34</code></td><td>Hyundai Tucson 2024</td><td><i>sin registro previo</i></td>
+
+          <td>Un cliente nuevo, que <b>no está en la base</b>.</td></tr>
+
+      <tr><td><code>ZZZZ99</code></td><td colspan="2"><i>no existe</i></td>
+
+          <td>Una patente desconocida.</td></tr>
+
+    </tbody>
+
+  </table>
+
+
+
+  <h2>Cuatro recorridos</h2>
+
+
+
+  <h3>1 · Cotizar una mantención y dejarla agendada</h3>
+
+  <ol>
+
+    <li>En el <a href="cotizador.html">Cotizador</a>, busca <code>KLXH23</code>. Con la patente basta:
+
+        aparecen el vehículo y el cliente.</li>
+
+    <li>Elige una versión y presiona <b>Ver plan de mantención</b>. Verás las operaciones, los repuestos
+
+        con su disponibilidad en bodega y el valor de cada mantención programada.</li>
+
+    <li><b>Destilda un repuesto.</b> El cliente que pide "hazme el aceite, pero el filtro de aire no":
+
+        el total se rehace solo y queda anotado qué no se hizo.</li>
+
+    <li><b>Descargar PDF</b> emite la orden a nombre del cliente, con lo incluido y lo excluido.</li>
+
+    <li><b>Agendar</b> lleva la cotización a la agenda del taller, sin volver a escribir nada.</li>
+
+  </ol>
+
+
+
+  <h3>2 · Un cliente que no está en la base</h3>
+
+  <ol>
+
+    <li>Busca <code>PPQR34</code>: el auto aparece, el dueño no.</li>
+
+    <li>Presiona <b>Descargar PDF</b>. Pide los datos antes de emitir el documento, para que la orden
+
+        no salga sin destinatario.</li>
+
+    <li>Prueba con un RUT mal escrito, por ejemplo <code>12.345.678-9</code>: lo rechaza por el dígito
+
+        verificador. El válido es <code>12.345.678-5</code>. Ese número termina en la factura, así que
+
+        se revisa antes y no después.</li>
+
+  </ol>
+
+
+
+  <h3>3 · Recibir un vehículo y emitir el acta</h3>
+
+  <ol>
+
+    <li>En la <a href="taller.html?vista=agenda">Agenda</a> están las horas del día. Presiona
+
+        <b>Ingresar</b> en cualquiera.</li>
+
+    <li>Usa el botón <b>Usar fotos de ejemplo</b>. Sin la inspección fotográfica la plataforma no deja
+
+        recibir el vehículo —es la única prueba del estado en que llegó— y aquí no tienes un auto
+
+        al lado para fotografiar.</li>
+
+    <li><b>Marca los daños sobre el diagrama.</b> Eliges el tipo (rayón, abolladura, quebrado, falta
+
+        una pieza, pintura) y tocas dónde viene. Vale más que describirlo por escrito: "rayón en la
+
+        puerta trasera derecha" depende de quién cuente las puertas y desde dónde mire.</li>
+
+    <li>Corrige el <b>teléfono o el correo</b> del cliente si vienen mal. Es el único momento en que
+
+        está al frente para confirmarlos.</li>
+
+    <li>Marca o deja sin marcar la <b>autorización para recibir ofertas</b>. Queda impresa en el acta
+
+        como SÍ o NO, separada de los avisos del servicio, que se envían igual.</li>
+
+    <li>Firma los dos recuadros con el mouse.</li>
+
+    <li><b>Ingresar a Taller</b> abre la orden de trabajo y descarga el acta: fotos, mapa de daños,
+
+        las condiciones generales y el tratamiento de datos personales.</li>
+
+  </ol>
+
+
+
+  <h3>4 · Lo que ve el cliente</h3>
+
+  <ol>
+
+    <li>Abre la <a href="cliente.html">vista del cliente</a>. Es pública y no pide clave.</li>
+
+    <li>Elige un auto y pide una hora. La solicitud aparece en la agenda del taller, en
+
+        <b>Reservas web</b>, para que un asesor la confirme.</li>
+
+    <li>Si eliges <b>Ford</b>, te lleva a la agenda de Ford: esa marca se agenda en su propio sistema.</li>
+
+  </ol>
+
+
+
+  <h2>Alcance de esta demostración</h2>
+
+  <ul>
+
+    <li><b>Los correos al cliente no se envían.</b> Los tres avisos —al agendar, siete días antes y
+
+        veinticuatro horas antes— están construidos y probados, pero enviarlos requiere el servidor
+
+        de correo, que no forma parte de esta demostración.</li>
+
+    <li><b>Las fotos se pierden si recargas la página.</b> Todo lo demás —horas, recepciones,
+
+        correcciones— se mantiene.</li>
+
+    <li>Varias personas pueden trabajar a la vez sobre la misma bandeja de sucursal. Eso se ve con
+
+        el sistema instalado, no aquí.</li>
+
+  </ul>
+
+
+
+  <h2>Entrar con otro usuario</h2>
+
+  <p>La demostración abre con la sesión iniciada. Si cierras sesión, entra con cualquier correo
+
+     terminado en <code>@empresa.demo</code> y la clave <code>demo</code>. Hay cuatro perfiles de
+
+     ejemplo: <code>demo@</code>, <code>asesor@</code>, <code>tecnico@</code> y <code>jefe@</code>.</p>
+
+
+
+</main>
+
+</body>
+
+</html>
+
