@@ -1,0 +1,1008 @@
+/* ============================================================
+   Sistema de Taller y Agendamiento Postventa
+   Complementa css/estilos.css (topbar, footer, variables).
+   Paleta: identidad Postventa (--navy #001b6c y derivados).
+   ============================================================ */
+
+:root {
+  --tipo-mant: #fbe0ea;  --tipo-mant-b: #d96a95;
+  --tipo-rep:  #e2f2da;  --tipo-rep-b:  #5aa84a;
+  --tipo-diag: #ecdff7;  --tipo-diag-b: #9a5fc4;
+  --tipo-ext:  #ddeafc;  --tipo-ext-b:  #5a8fd6;
+  --stop: #b42318;
+  --bodega: #0d7a5f;
+}
+
+body.taller { font-size: 13.5px; }
+
+/* ---------- Encabezado de módulo + pestañas ---------- */
+.taller-head {
+  background: var(--tint);
+  border-bottom: 1px solid var(--tint-borde);
+}
+.taller-head__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 18px 22px 0;
+}
+.taller-head__title { margin: 0 0 2px; font-size: 24px; font-weight: 800; color: var(--navy); }
+.taller-head__sub { margin: 0 0 14px; color: var(--ink-2); font-size: 13.5px; }
+
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.tab {
+  padding: 9px 15px;
+  border: 1px solid var(--tint-borde);
+  border-bottom: none;
+  border-radius: 9px 9px 0 0;
+  background: rgba(255, 255, 255, .55);
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink-2);
+  font-size: 13px;
+  user-select: none;
+}
+.tab:hover { background: rgba(255, 255, 255, .85); }
+.tab.active { background: var(--bg); color: var(--navy); position: relative; top: 1px; border-color: var(--tint-borde); }
+.tab.bodegatab.active { color: var(--bodega); }
+
+/* ---------- Vistas ---------- */
+.view { display: none; max-width: var(--max); margin: 0 auto; padding: 20px 22px 50px; }
+.view.active { display: block; }
+h2.vtitle { margin: 2px 0 4px; color: var(--navy); font-size: 20px; }
+.sub, .ag-sub { color: var(--ink-2); margin: 0 0 14px; font-size: 13px; }
+
+.panel {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-sm);
+  box-shadow: var(--sombra-sm);
+  padding: 14px;
+}
+
+/* ---------- Botones ---------- */
+.agbtn { border: none; border-radius: 7px; color: #fff; font-size: 13px; cursor: pointer; padding: 9px 15px; font-weight: 600; font-family: var(--font); }
+.agbtn-green { background: var(--verde); }
+.agbtn-blue  { background: var(--blue); }
+.agbtn-navy  { background: var(--navy); }
+.agbtn-grey  { background: #8a93a3; }
+.agbtn-red   { background: var(--rojo); }
+.agbtn-sm    { padding: 5px 12px; font-size: 12px; border-radius: 14px; }
+.agbtn:hover { filter: brightness(1.12); }
+.agbtn-ghost {
+  background: transparent; color: var(--navy);
+  border: 1px solid var(--tint-borde);
+}
+.agbtn-ghost:hover { background: var(--tint); filter: none; }
+
+/* ---------- Banner de cotización pendiente ---------- */
+.prefill-banner {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  background: var(--ambar-bg); border: 1px solid var(--ambar-borde);
+  border-radius: var(--radio-sm); padding: 12px 16px; margin: 0 0 16px;
+  color: #5d3f10; font-size: 13.5px;
+}
+.prefill-banner b { color: var(--navy); }
+.prefill-banner .agbtn { margin-left: auto; }
+
+/* ---------- Agendamiento ---------- */
+.ag-grid { display: grid; grid-template-columns: 290px 1fr; gap: 20px; align-items: start; }
+@media (max-width: 860px) { .ag-grid { grid-template-columns: 1fr; } }
+.ag-panel h4 { margin: 0 0 10px; color: var(--navy); font-size: 13px; }
+.ag-panel select { width: 100%; margin-bottom: 8px; padding: 8px; border: 1px solid var(--linea); border-radius: 6px; font-family: var(--font); background: #fff; }
+
+.ag-calnav { display: flex; align-items: center; justify-content: space-between; margin: 10px 0 4px; }
+.ag-calnav b { color: var(--navy); font-size: 13px; text-transform: capitalize; }
+.ag-calnav button { border: 1px solid var(--linea); background: #fff; border-radius: 6px; cursor: pointer; padding: 2px 9px; font-size: 14px; color: var(--navy); }
+.ag-cal { width: 100%; border-collapse: collapse; font-size: 12px; text-align: center; margin: 4px 0 8px; }
+.ag-cal th { padding: 4px; color: var(--ink-3); font-weight: 600; }
+.ag-cal td { padding: 6px 0; border-radius: 6px; cursor: pointer; position: relative; }
+.ag-cal td:hover { background: var(--tint); }
+.ag-cal td.off { color: #c3c9d4; cursor: default; }
+.ag-cal td.off:hover { background: none; }
+.ag-cal td.hoy { outline: 1px solid var(--tint-borde); }
+.ag-cal td.on { background: var(--navy); color: #fff; font-weight: 700; }
+.ag-cal td .dot { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--verde); }
+.ag-cal td.on .dot { background: #fff; }
+/* Segundo punto: ese día tiene una solicitud de cliente sin confirmar */
+.ag-cal td .dot-web { background: #d98324; left: calc(50% + 6px); }
+.ag-cal td .dot ~ .dot-web { left: calc(50% + 6px); }
+.ag-cal td .dot-web:only-of-type { left: 50%; }
+.ag-cal td.on .dot-web { background: #ffcf8a; }
+
+.ag-fecha-sel { font-size: 13px; color: var(--ink-2); margin: 0 0 10px; }
+.ag-fecha-sel b { color: var(--navy); text-transform: capitalize; }
+
+.ag-jor { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 640px) { .ag-jor { grid-template-columns: 1fr; } }
+.ag-jor h5 { text-align: center; margin: 0 0 10px; color: var(--ink-2); font-size: 12.5px; text-transform: uppercase; letter-spacing: .6px; }
+.ag-slots { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.ag-slot { padding: 8px; text-align: center; border: 1px solid var(--linea); border-radius: 6px; cursor: pointer; background: #fff; font-weight: 600; color: var(--ink); }
+.ag-slot.busy { background: var(--bg); color: #b9c0cc; cursor: not-allowed; border-style: dashed; font-weight: 400; }
+.ag-slot.free:hover { background: var(--tint); border-color: var(--navy); color: var(--navy); }
+/* Hora que pidió un cliente por la web y aún nadie confirma */
+.ag-slot.web {
+  background: #fff6e8; border-color: #e0a961; border-style: dashed;
+  color: #8a5a12; position: relative;
+}
+.ag-slot.web::after {
+  content: "cliente"; display: block; font-size: 9.5px; font-weight: 700;
+  letter-spacing: .4px; text-transform: uppercase; opacity: .85;
+}
+.ag-slot.web:hover { background: #ffeccd; border-style: solid; }
+/* Sin sucursal elegida los cupos no significan nada: son POR sucursal. Se
+   muestran apagados y sin clic, en vez de pintarlos libres y avisar del error
+   recién después de que el asesor eligió una hora. */
+.ag-slot.off { background: var(--bg); color: #c3c9d4; cursor: default; border-style: dotted; font-weight: 400; }
+/* Dos citas a la misma hora. Pasa solo si dos estaciones guardan a la vez sin
+   red; hay que verlo el día antes y no con los dos autos en la puerta. */
+.ag-slot.choque { border: 2px solid #b42318; background: #fdecec; color: #b42318; font-weight: 800; cursor: help; }
+.ag-sin-suc {
+  margin: 0 0 12px; padding: 9px 12px; font-size: 12.5px; line-height: 1.45;
+  background: var(--ambar-bg); color: var(--ambar); border: 1px solid #e8c48d; border-radius: 8px;
+}
+
+/* Avisos del flujo de la agenda. Reemplazan a los alert(), que congelan el
+   sondeo de sincronización y tapan la fila de la que hablan. */
+.ag-aviso {
+  margin: 0 0 12px; padding: 10px 13px; border-radius: 8px;
+  font-size: 13px; line-height: 1.45; border: 1px solid transparent;
+}
+.ag-aviso--info { background: var(--tint); color: var(--navy); border-color: var(--tint-borde); }
+.ag-aviso--ok   { background: var(--verde-bg); color: var(--verde); border-color: rgba(10,125,67,.25); }
+.ag-aviso--warn { background: var(--ambar-bg); color: var(--ambar); border-color: #e8c48d; }
+/* La fila recién creada, en vez del alert de éxito que tapaba la tabla */
+@keyframes filaNueva { from { background: var(--verde-bg); } to { background: transparent; } }
+.fila-nueva > td { animation: filaNueva 4s ease-out; }
+
+table.ag-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 16px; background: var(--blanco); border-radius: var(--radio-sm); overflow: hidden; box-shadow: var(--sombra-sm); }
+table.ag-table th { background: var(--navy); color: #fff; padding: 9px 10px; text-align: left; font-weight: 600; font-size: 12px; }
+table.ag-table td { padding: 8px 10px; border-bottom: 1px solid var(--linea); }
+table.ag-table tr:last-child td { border-bottom: none; }
+table.ag-table tr:nth-child(even) td { background: var(--tint-2); }
+
+.ag-pill { display: inline-block; padding: 2px 10px; border-radius: 11px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.ag-pill.por { background: var(--ambar-bg); color: var(--ambar); }
+.ag-pill.en  { background: var(--verde-bg); color: var(--verde); }
+.ag-pill.ent { background: var(--tint); color: var(--navy); }
+.ag-pill.web { background: #fff6e8; color: #8a5a12; border: 1px solid #e8c48d; }
+/* Las citas anuladas ya no se borran: quedan a la vista, apagadas, con quién
+   las anuló y cuándo en el tooltip. */
+.ag-pill.anu { background: #f4f4f5; color: #6b6b70; }
+/* Columna Sucursal: la agenda la usa la central y ve las 12 sucursales, así que
+   cada fila tiene que decir de cuál es. Las de otra sucursal se atenúan un poco
+   —siguen visibles, solo que no se reciben desde acá. */
+.celda-suc { font-size: 11.5px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+.fila-otra-suc > td { background: #fcfcfd; }
+.fila-otra-suc .celda-suc { color: var(--ink-2); font-weight: 600; }
+.fila-anulada > td { opacity: .55; }
+.fila-anulada > td:nth-child(5) { text-decoration: line-through; }
+/* Fila de una solicitud del cliente todavía sin confirmar */
+.fila-web > td { background: #fffaf2; }
+.fila-web > td:first-child {
+  font-size: 10.5px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .5px; color: #b8641a;
+}
+
+.ag-stabs { display: flex; gap: 8px; margin: 14px 0; flex-wrap: wrap; }
+.ag-stabs button { border: 1px solid var(--linea); background: #fff; padding: 9px 18px; border-radius: 7px; cursor: pointer; font-family: var(--font); font-weight: 600; color: var(--ink-2); }
+.ag-stabs button.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+.demo-tools { margin-top: 18px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.demo-tools span { color: var(--ink-3); font-size: 12px; }
+
+/* ---------- Tarjetas de orden (kanban) ---------- */
+.card-ot {
+  border: 1px solid #b9c2cd; border-left: 5px solid #999; border-radius: 6px;
+  padding: 6px 8px; background: #fff; cursor: grab;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08); font-size: 12px; position: relative;
+}
+.card-ot.mant { border-left-color: var(--tipo-mant-b); background: var(--tipo-mant); }
+.card-ot.rep  { border-left-color: var(--tipo-rep-b);  background: var(--tipo-rep); }
+.card-ot.diag { border-left-color: var(--tipo-diag-b); background: var(--tipo-diag); }
+.card-ot.ext  { border-left-color: var(--tipo-ext-b);  background: var(--tipo-ext); }
+.card-ot .ro { font-weight: 700; color: var(--navy); }
+.card-ot .pat { font-weight: 600; }
+.card-ot .meta { color: #445; font-size: 11px; }
+.card-ot .stopflag { position: absolute; top: 3px; right: 4px; background: var(--stop); color: #fff; border-radius: 3px; font-size: 9px; padding: 1px 4px; font-weight: 700; }
+.card-ot .pick { position: absolute; top: 3px; right: 4px; border-radius: 3px; font-size: 9px; padding: 1px 4px; font-weight: 700; color: #fff; }
+.card-ot .pick.pend { background: #d98c00; }
+.card-ot .pick.listo { background: var(--bodega); }
+.card-ot.dragging { opacity: .45; }
+
+.kanban { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; }
+.col { flex: 0 0 168px; background: var(--tint-2); border: 1px solid var(--linea); border-radius: 8px; display: flex; flex-direction: column; min-height: 300px; }
+.col h3 { margin: 0; padding: 8px; background: var(--navy); color: #fff; font-size: 12px; border-radius: 7px 7px 0 0; text-align: center; font-weight: 600; }
+.col.final h3 { background: var(--verde); }
+.col .drop { flex: 1; padding: 6px; display: flex; flex-direction: column; gap: 6px; }
+.col .drop.over { background: var(--tint); outline: 2px dashed var(--navy); }
+.col .count { font-size: 11px; opacity: .85; }
+
+/* ---------- 3 · Preparación de repuestos ----------
+   Tablero propio, no kanban de arrastre. Las columnas son la FECHA de la cita
+   (las calcula el sistema) y el estado del kit se cambia con botones, que
+   además funcionan en la tablet del taller — el drag & drop no.
+   Las reglas van scoped a .kanban--prep para no deformar JPCB, que comparte
+   .kanban / .col / .count. */
+.prep-leyenda {
+  display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center;
+  margin: 0 0 12px; font-size: 12px; color: var(--ink-2);
+}
+.prep-leyenda span { display: flex; align-items: center; gap: 6px; }
+.kanban--prep { align-items: flex-start; }
+.kanban--prep .col { flex: 0 0 258px; min-height: 0; }
+.kanban--prep .col h3 { text-align: left; padding: 9px 11px; font-size: 12.5px; }
+.kanban--prep .prep-col--venc h3 { background: #8a1c12; }
+.kanban--prep .prep-col--hoy h3 { background: var(--navy); }
+.kanban--prep .prep-col--man h3 { background: #2f5aa8; }
+.kanban--prep .col:not(.prep-col--venc):not(.prep-col--hoy):not(.prep-col--man) h3 {
+  background: var(--tint); color: var(--navy); border-bottom: 1px solid var(--linea);
+}
+.prep-lista { padding: 8px; display: flex; flex-direction: column; gap: 8px; }
+.prep-vacio { margin: 4px 2px; font-size: 12px; color: var(--ink-3); font-style: italic; }
+.prep-vacio-todo { color: var(--ink-3); padding: 10px 2px; }
+.prep-nota { margin: 10px 0 0; font-size: 12px; color: var(--ink-3); }
+
+.prep-card {
+  background: #fff; border: 1px solid var(--linea); border-radius: 8px;
+  padding: 9px 10px; box-shadow: var(--sombra-sm);
+}
+.prep-card__cab { display: flex; align-items: baseline; gap: 8px; }
+.prep-card__cab b { color: var(--navy); font-size: 14px; }
+.prep-card__cuando { margin-left: auto; font-size: 11.5px; color: var(--ink-2); font-weight: 700; white-space: nowrap; }
+.prep-card__det { font-size: 11.5px; color: var(--ink-2); margin: 3px 0 8px; }
+.prep-card__pie { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+
+/* Semáforo del kit: la respuesta a "¿esta cita va a tener problema?" */
+.prep-sem { font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+.prep-sem--ok  { color: var(--verde); }
+.prep-sem--fro { color: #b7791f; }
+.prep-sem--no  { color: #b42318; }
+.prep-sem--sd  { color: var(--ink-3); }
+.prep-leyenda .prep-sem { font-size: 13px; }
+
+/* Ciclo del kit: avanza Y retrocede. Un ciclo de una sola dirección convierte
+   un clic equivocado en un estado falso sin salida. */
+.prep-kit { display: inline-flex; align-items: center; gap: 2px; }
+.prep-kit__nav {
+  min-width: 30px; min-height: 30px; padding: 0 6px; cursor: pointer;
+  background: #fff; border: 1px solid var(--ink-3); border-radius: 6px;
+  color: var(--ink-2); font: 700 15px/1 inherit;
+}
+.prep-kit__nav:hover { border-color: var(--navy); color: var(--navy); background: var(--tint); }
+.prep-kit__nav--go { border-color: var(--navy); color: var(--navy); }
+.prep-kit__st {
+  font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 11px; white-space: nowrap;
+}
+.prep-kit__st.kit-rev { background: #f4f4f5; color: #6b6b70; }
+.prep-kit__st.kit-ped { background: var(--ambar-bg); color: var(--ambar); }
+.prep-kit__st.kit-rec { background: var(--verde-bg); color: var(--verde); }
+.prep-card__ver {
+  margin-top: 8px; width: 100%; min-height: 32px; cursor: pointer;
+  background: transparent; border: 1px dashed var(--ink-3); border-radius: 6px;
+  color: var(--ink-2); font: 600 11.5px inherit;
+}
+.prep-card__ver:hover { border-color: var(--navy); color: var(--navy); border-style: solid; }
+
+/* En pantalla angosta el tablero se apila en vertical: las columnas cortadas
+   con scroll horizontal esconden justo lo urgente. */
+@media (max-width: 860px) {
+  .kanban--prep { display: block; overflow-x: visible; }
+  .kanban--prep .col { width: 100%; margin-bottom: 12px; }
+}
+
+.stopzone { margin-top: 16px; border: 2px solid var(--stop); border-radius: 8px; background: var(--blanco); }
+.stopzone .zhead { background: var(--stop); color: #fff; padding: 8px 12px; font-weight: 700; border-radius: 5px 5px 0 0; font-size: 13px; }
+.stopcols { display: flex; gap: 8px; padding: 8px; flex-wrap: wrap; }
+.stopcols .col { flex: 1 1 180px; min-height: 110px; }
+.stopcols .col h3 { background: #9c2c22; }
+
+/* ---------- Planificador ---------- */
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 6px 0 14px; font-size: 12px; align-items: center; }
+.legend .it { display: flex; align-items: center; gap: 6px; }
+.legend .sw { width: 15px; height: 15px; border-radius: 3px; border: 1px solid #99a; }
+.agenda-wrap { display: flex; gap: 12px; }
+.backlog { flex: 0 0 225px; border: 1px solid var(--linea); border-radius: 8px; padding: 8px; background: var(--tint-2); max-height: 540px; overflow: auto; }
+.backlog h3 { margin: 2px 0 8px; font-size: 13px; color: var(--navy); }
+.backlog .drop { display: flex; flex-direction: column; gap: 6px; min-height: 60px; }
+.planner { flex: 1; overflow: auto; border: 1px solid var(--linea); border-radius: 8px; position: relative; background: #fff; }
+table.grid { border-collapse: collapse; }
+table.grid th.time { background: var(--tint); font-size: 11px; border: 1px solid var(--linea); min-width: 42px; height: 28px; position: sticky; top: 0; z-index: 4; color: var(--navy); }
+table.grid th.tech { background: #fff; border: 1px solid var(--linea); min-width: 132px; text-align: left; padding: 6px 8px; font-weight: 700; position: sticky; left: 0; z-index: 3; font-size: 12px; color: var(--ink); }
+table.grid th.corner { position: sticky; left: 0; top: 0; z-index: 6; background: #fff; border: 1px solid var(--linea); }
+table.grid td.slot { border: 1px solid #eef1f6; min-width: 42px; height: 60px; padding: 0; position: relative; vertical-align: top; }
+table.grid td.slot.over { background: var(--tint); }
+.gblock { position: absolute; top: 2px; bottom: 2px; left: 1px; border-radius: 4px; padding: 3px 5px; font-size: 11px; overflow: hidden; cursor: pointer; z-index: 2; border: 1px solid rgba(0, 0, 0, .15); border-left-width: 5px; }
+.gblock .gdur { position: absolute; top: 1px; right: 2px; background: rgba(0, 0, 0, .55); color: #fff; font-size: 9px; padding: 0 3px; border-radius: 3px; }
+.nowline { position: absolute; width: 2px; background: var(--rojo); z-index: 5; pointer-events: none; }
+.nowline .lbl { position: absolute; top: -16px; left: -16px; background: var(--rojo); color: #fff; font-size: 10px; padding: 1px 5px; border-radius: 8px; white-space: nowrap; }
+
+/* ---------- Recepción ---------- */
+.flow-note { background: var(--tint); border: 1px solid var(--tint-borde); border-radius: 8px; padding: 11px 14px; margin: 14px 0; color: var(--navy); font-size: 13px; }
+.rcp-band { background: var(--tint-2); border: 1px solid var(--linea); padding: 14px; border-radius: 8px; margin-bottom: 6px; }
+.blk { padding: 14px 0; border-bottom: 1px solid var(--linea); }
+.blk h3 { color: var(--navy); font-size: 15px; margin: 0 0 12px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 50px; }
+@media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+.field-r .lab { font-weight: 600; display: block; font-size: 12.5px; }
+.field-r .val { color: var(--ink-2); }
+/* Campos del acta que SÍ se escriben (km real). Se distinguen de los de solo
+   lectura para que el asesor vea de una qué le toca llenar. */
+.field-r--edit .lab { color: var(--navy); }
+.req { color: #c0392b; }
+.val-input {
+  width: 100%; max-width: 220px; margin-top: 2px; padding: 6px 9px;
+  border: 1px solid var(--ink-3); border-radius: 7px; font-size: 14px; font-weight: 700;
+  color: var(--navy); background: #fff;
+}
+.val-input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px var(--tint); }
+.val-input.falta { border-color: #c0392b; background: #fff8f7; }
+.acc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 22px; }
+@media (max-width: 720px) { .acc-grid { grid-template-columns: repeat(2, 1fr); } }
+.acc { display: flex; gap: 8px; align-items: center; font-size: 12.5px; cursor: pointer; }
+.acc input:checked + span { font-weight: 700; color: var(--navy); }
+.acc-pie { display: flex; align-items: center; gap: 12px; margin-top: 11px; font-size: 12px; color: var(--ink-3); }
+.comb-row { display: flex; gap: 18px; flex-wrap: wrap; }
+.comb-row label { display: flex; gap: 6px; align-items: center; cursor: pointer; font-size: 13.5px; }
+.rc-obs {
+  width: 100%; padding: 9px 11px; border: 1px solid var(--ink-3); border-radius: 8px;
+  font: inherit; font-size: 13.5px; color: var(--ink-1); resize: vertical;
+}
+.rc-obs:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px var(--tint); }
+/* Sello real de la recepción (hora de llegada y responsable) */
+.rec-sello {
+  display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center;
+  background: #f2f8f4; border: 1px solid #cfe6d8; border-radius: 8px;
+  padding: 8px 13px; margin-bottom: 6px; font-size: 12.5px; color: #1b5e3f;
+}
+.rec-sello b { color: #14472f; }
+.photo-wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 740px; }
+.photo-btn { background: #fff; color: var(--ink-2); border: 1px dashed var(--ink-3); border-radius: 6px; padding: 9px; font-size: 12px; cursor: pointer; }
+.photo-btn:hover { border-color: var(--navy); color: var(--navy); }
+/* Slots de captura de foto (recepción) — abren la cámara en tablet/celular */
+.photo-slot { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: #fff center/cover no-repeat; color: var(--ink-2); border: 1px dashed var(--ink-3); border-radius: 6px; padding: 12px 9px; font-size: 12px; cursor: pointer; min-height: 84px; text-align: center; overflow: hidden; transition: border-color .15s; }
+.photo-slot input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.photo-slot:hover { border-color: var(--navy); }
+.photo-slot .photo-cam { font-size: 20px; line-height: 1; }
+.photo-slot.has-photo { border-style: solid; border-color: var(--navy); color: #fff; }
+.photo-slot.has-photo .photo-lbl, .photo-slot.has-photo .photo-cam { background: rgba(0,0,0,.35); border-radius: 4px; padding: 1px 5px; }
+.photo-slot .photo-st { position: absolute; top: 4px; right: 5px; font-weight: 700; color: #2e7d32; background: #fff; border-radius: 10px; padding: 0 6px; font-size: 11px; }
+.photo-slot.photo-err { border-color: #c62828; }
+.photo-slot.photo-err .photo-st { color: #c62828; }
+@media (max-width: 560px) { .photo-wrap { grid-template-columns: repeat(2, 1fr); } }
+/* Buscador de recepción por patente */
+.rec-buscar { background: #fff; border: 1px solid var(--ink-3); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; max-width: 520px; }
+.rec-buscar-lbl { display: block; font-weight: 700; color: var(--navy); font-size: 13px; margin-bottom: 6px; }
+.rec-buscar-row { display: flex; gap: 8px; }
+.rec-buscar-row input { flex: 1; padding: 9px 11px; border: 1px solid var(--ink-3); border-radius: 7px; font-size: 15px; text-transform: uppercase; }
+.rec-buscar-msg { display: block; margin-top: 6px; font-size: 12px; color: var(--ink-2); min-height: 14px; }
+/* ---------- Panel de recibidos del día (dentro de la Agenda) ----------
+   La recepción vive en su propio módulo, así que la agenda necesita una forma
+   de ver qué pasó con los autos que ya llegaron. */
+.recep-dia { margin-top: 18px; }
+.recep-dia__tit {
+  margin: 0 0 9px; font-size: 13px; color: var(--navy); font-weight: 800;
+  text-transform: uppercase; letter-spacing: .5px;
+}
+.recep-dia__tit span { color: var(--ink-3); font-weight: 600; text-transform: none; letter-spacing: 0; }
+.recep-dia__lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 9px; }
+.recep-item {
+  background: #fff; border: 1px solid var(--linea); border-left: 3px solid var(--verde);
+  border-radius: 8px; padding: 8px 10px; box-shadow: var(--sombra-sm);
+}
+.recep-item--stop { border-left-color: #c62828; }
+.recep-item__cab { display: flex; align-items: baseline; gap: 7px; }
+.recep-item__cab b { color: var(--navy); font-size: 14px; }
+.recep-item__ro { font-size: 10.5px; color: var(--ink-3); font-weight: 700; }
+.recep-item__hora { margin-left: auto; font-size: 11.5px; color: var(--ink-2); font-weight: 700; }
+.recep-item__det { font-size: 11.5px; color: var(--ink-2); margin: 2px 0 6px; }
+.recep-item__pie { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.recep-pill {
+  font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 11px;
+  background: var(--tint); color: var(--navy);
+}
+.recep-item--stop .recep-pill { background: #fdecec; color: #b42318; }
+.recep-ico { font-size: 11px; color: var(--ink-3); }
+.recep-ico.ok { color: var(--verde); font-weight: 700; }
+.recep-ico.falta { color: #b42318; font-weight: 700; }
+/* "~09:20" = es la hora de la CITA, no la llegada real (órdenes anteriores al
+   sello de recepción). Se distingue para no confundir un dato con el otro. */
+.recep-item__hora.es-cita { color: var(--ink-3); font-weight: 600; font-style: italic; }
+
+/* ---------- Trazabilidad de la orden (modal de detalle) ---------- */
+.traza { margin: 4px 0 0; padding-left: 16px; max-height: 190px; overflow-y: auto; }
+.traza li { font-size: 12px; color: var(--ink-2); margin-bottom: 2px; }
+.traza li b { color: var(--navy); font-weight: 700; }
+.traza-quien { color: var(--ink-3); }
+
+/* ---------- Aviso de almacenamiento lleno ----------
+   Antes el tope de localStorage se tragaba en silencio y la estación seguía
+   trabajando sin guardar nada. Esto tiene que verse sí o sí. */
+.aviso-disco {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  background: #7a1c12; color: #fff; padding: 11px 18px;
+  font-size: 13px; line-height: 1.45; box-shadow: 0 -3px 14px rgba(0, 0, 0, .25);
+}
+.aviso-disco b { color: #ffd9d2; }
+
+/* ---------- Vista de mes de la agenda ----------
+   El calendario chico del panel solo marca "hay algo" con un punto. Esta vista
+   muestra las citas dentro de cada día, para ver la carga del mes completo sin
+   ir día por día. */
+.ag-vistas { display: flex; gap: 6px; margin: 0 0 14px; }
+.ag-vista-btn {
+  border: 1px solid var(--linea); background: #fff; color: var(--ink-2);
+  font: inherit; font-weight: 700; font-size: 13px; padding: 7px 18px;
+  border-radius: 999px; cursor: pointer; transition: all .15s;
+}
+.ag-vista-btn:hover { border-color: var(--navy); color: var(--navy); }
+.ag-vista-btn.is-on { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.mes-cab { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.mes-cab button {
+  border: 1px solid var(--linea); background: #fff; color: var(--navy);
+  width: 30px; height: 30px; border-radius: 7px; cursor: pointer; font-size: 17px; line-height: 1;
+}
+.mes-cab button:hover { border-color: var(--navy); background: var(--tint); }
+.mes-cab b { font-size: 16px; color: var(--navy); text-transform: capitalize; min-width: 165px; }
+.mes-leyenda { margin-left: auto; font-size: 11.5px; color: var(--ink-3); display: flex; align-items: center; gap: 6px; }
+.mes-chip { width: 9px; height: 9px; border-radius: 3px; display: inline-block; }
+.mes-chip--ag { background: var(--ambar); }
+.mes-chip--taller { background: var(--verde); }
+.mes-chip--web { background: #d98324; }
+
+.mes-grid {
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px;
+  background: var(--linea); border: 1px solid var(--linea); border-radius: 10px; overflow: hidden;
+}
+.mes-dow {
+  background: var(--tint-2); color: var(--ink-2); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .5px; text-align: center; padding: 7px 0;
+}
+.mes-dia {
+  background: #fff; min-height: 104px; padding: 5px 6px 7px; cursor: pointer;
+  display: flex; flex-direction: column; gap: 3px; transition: background .12s;
+}
+.mes-dia:hover { background: var(--tint-2); }
+.mes-dia.fuera { background: var(--bg); cursor: default; }
+.mes-dia.fuera:hover { background: var(--bg); }
+.mes-dia.hoy .mes-num { background: var(--navy); color: #fff; }
+.mes-dia.sel { box-shadow: inset 0 0 0 2px var(--navy); }
+.mes-num {
+  align-self: flex-start; font-size: 12px; font-weight: 700; color: var(--ink-2);
+  min-width: 20px; height: 20px; border-radius: 999px; display: grid; place-items: center;
+}
+.mes-cita {
+  font-size: 10.5px; line-height: 1.25; padding: 2px 5px; border-radius: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  border-left: 3px solid transparent;
+}
+.mes-cita--ag { background: var(--ambar-bg); color: #7a5200; border-left-color: var(--ambar); }
+.mes-cita--taller { background: var(--verde-bg); color: var(--verde); border-left-color: var(--verde); }
+.mes-cita--web { background: #fff6e8; color: #8a5a12; border-left-color: #d98324; font-weight: 700; }
+.mes-mas { font-size: 10px; color: var(--ink-3); padding-left: 5px; }
+
+@media (max-width: 720px) {
+  .mes-dia { min-height: 72px; }
+  .mes-cita { font-size: 9.5px; }
+  .mes-leyenda { width: 100%; margin-left: 0; }
+}
+
+/* ---------- Firmas digitales (canvas propio, sin librerías) ---------- */
+.firmas { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: center; }
+.firma-col { display: flex; flex-direction: column; gap: 5px; }
+/* touch-action:none es lo que permite firmar con el dedo sin que la página
+   se desplace debajo del trazo. */
+.firma-box {
+  border: 1px solid var(--linea); height: 110px; border-radius: 4px; background: #fff;
+  width: 100%; display: block; touch-action: none; cursor: crosshair;
+}
+.firma-box.firmada { border-color: var(--navy); }
+.firma-pie { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.firma-pie small { color: var(--ink-2); }
+.firma-st { font-size: 11.5px; font-weight: 700; color: #2e7d32; }
+.firma-st.err { color: #c62828; }
+.firma-limpiar {
+  background: none; border: 0; padding: 0; font: inherit; font-size: 11.5px;
+  color: var(--ink-3); text-decoration: underline; cursor: pointer;
+}
+.firma-limpiar:hover { color: var(--navy); }
+@media (max-width: 560px) { .firmas { grid-template-columns: 1fr; gap: 18px; } }
+
+/* ---------- Bodega ---------- */
+.bodega-wrap { display: flex; gap: 14px; flex-wrap: wrap; }
+.pickcard { flex: 1 1 330px; max-width: 400px; border: 1px solid var(--linea); border-radius: 10px; overflow: hidden; box-shadow: var(--sombra-sm); background: #fff; }
+.pickcard .ph { background: var(--bodega); color: #fff; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; }
+.pickcard .ph b { font-size: 15px; }
+.pickcard .veh { padding: 8px 12px; background: #eef6f3; font-size: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; }
+.pickcard .veh .lbl { color: #557; }
+.pickcard table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.pickcard th, .pickcard td { text-align: left; padding: 5px 8px; border-bottom: 1px solid #eef; }
+.pickcard thead { background: #f4f8f6; }
+.pickcard .pf { padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.badge { border-radius: 4px; font-size: 11px; padding: 2px 7px; font-weight: 700; color: #fff; white-space: nowrap; }
+.badge.pend { background: #d98c00; }
+.badge.listo { background: var(--bodega); }
+.stk { font-size: 11px; font-weight: 700; white-space: nowrap; }
+.stk.ok { color: var(--verde); }
+.stk.fro { color: #6b21a8; }
+.stk.no { color: var(--rojo); }
+.stk.sd { color: var(--ink-3); font-weight: 400; }
+
+/* ---------- Reportes ---------- */
+.rep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; margin-top: 14px; }
+.rep-card { border: 1px solid var(--linea); border-radius: 10px; padding: 14px; text-align: center; background: #fff; box-shadow: var(--sombra-sm); }
+.rep-card h5 { margin: 0 0 10px; color: var(--ink-2); font-size: 12.5px; }
+.rep-card .kpi { font-size: 24px; color: var(--navy); font-weight: 800; }
+.bars { display: flex; align-items: flex-end; gap: 6px; height: 84px; justify-content: center; }
+.bars i { width: 14px; background: var(--navy); border-radius: 3px 3px 0 0; display: block; }
+.bars .bl { font-size: 9.5px; color: var(--ink-3); display: block; margin-top: 3px; }
+.bar-item { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+
+/* ---------- Modales ---------- */
+.overlay { position: fixed; inset: 0; background: rgba(4, 16, 70, .45); display: none; align-items: flex-start; justify-content: center; padding: 30px 14px; overflow: auto; z-index: 60; }
+.overlay.open { display: flex; }
+.modal { background: #fff; border-radius: 12px; width: 480px; max-width: 100%; max-height: 88vh; overflow: auto; box-shadow: 0 12px 44px rgba(0, 0, 0, .35); }
+.modal h3 { background: var(--tint-2); margin: 0; padding: 13px 16px; border-bottom: 1px solid var(--linea); color: var(--navy); font-size: 16px; }
+.modal .c { padding: 14px 16px; font-size: 13px; }
+.modal .c > div { margin: 4px 0; }
+.modal .lbl { font-weight: 700; }
+.modal table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+.modal th, .modal td { text-align: left; padding: 4px 6px; border-bottom: 1px solid #eee; }
+.modal .actions { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--linea); }
+
+.ag-modal { background: #fff; border-radius: 12px; max-width: 860px; width: 100%; padding: 22px 26px; box-shadow: 0 12px 44px rgba(0, 0, 0, .35); }
+.ag-modal h3 { margin: 0 0 16px; color: var(--navy); }
+.ag-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 26px; }
+@media (max-width: 640px) { .ag-form { grid-template-columns: 1fr; } }
+.ag-form label { display: flex; flex-direction: column; font-size: 12px; color: var(--ink-2); gap: 3px; font-weight: 600; }
+.ag-form input, .ag-form select { padding: 9px; border: 1px solid var(--linea); border-radius: 6px; font-size: 13px; font-family: var(--font); background: #fff; }
+.ag-form input:disabled, .ag-form select:disabled { background: var(--tint-2); color: var(--ink-3); }
+.ag-foot { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.ag-valorref { grid-column: 1 / -1; background: var(--verde-bg); border: 1px solid #bfe3cd; border-radius: 6px; padding: 8px 12px; color: var(--verde); font-size: 13px; font-weight: 600; }
+
+.prox { color: var(--ink-3); font-size: 11.5px; font-style: italic; }
+
+/* ---------------- reservas web ---------------- */
+.webres-badge {
+  display: inline-block; min-width: 18px; padding: 1px 5px;
+  border-radius: 999px; background: #e53935; color: #fff;
+  font-size: 11px; font-weight: 800; text-align: center; margin-left: 4px;
+}
+.webres-lista { max-height: 60vh; overflow: auto; margin-top: 8px; }
+.webres-item {
+  border: 1px solid var(--linea, #e3e7f0); border-radius: 10px;
+  padding: 10px 12px; margin-bottom: 8px;
+}
+.webres-cab { font-size: 13.5px; margin-bottom: 3px; }
+/* La sucursal de cada reserva. La lista trae las de todas las sucursales, pero
+   la agenda muestra UNA bandeja: sin esta marca parecía que la agenda perdía
+   citas que en realidad estaban en otra sucursal. */
+.webres-suc {
+  display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 10px;
+  font-size: 10.5px; font-weight: 700; background: var(--tint); color: var(--navy);
+  vertical-align: middle;
+}
+.webres-suc.ajena { background: #fdecec; color: #b42318; }
+.webres-suc.libre { background: #fff6e8; color: #8a5a12; }
+.webres-item--ajena { opacity: .72; border-style: dashed; }
+.webres-det { font-size: 12.5px; color: var(--ink-2, #444); }
+.webres-com { font-size: 12.5px; color: var(--ink-3, #777); font-style: italic; margin-top: 3px; }
+.webres-item .agbtn { margin-top: 8px; }
+
+/* ============================================================
+   RESPONSIVE Y ACCESIBILIDAD TÁCTIL
+   ------------------------------------------------------------
+   Escala de cortes del archivo, de mayor a menor:
+     1100  pestañas con scroll        900  planificador apilado
+      860  .ag-grid (ya existía)      820  tabla de agenda
+      720  accesorios / vista mes     700  kanban vertical
+      640  formularios                560  fotos / firmas
+   Todo va al FINAL del archivo para ganar los empates de especificidad
+   contra las reglas base.
+   ============================================================ */
+
+/* ---- tabla de la agenda ----
+   Misma técnica que ya usa .planner: scroll propio en vez de comprimir. */
+.tabla-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tabla-scroll .ag-table { min-width: 880px; }
+
+@media (max-width: 820px) {
+  /* Para la central lo esencial es Hora, Cliente, Patente, Sucursal y Estado.
+     OC es un correlativo interno, el vehículo se deduce de la patente y el
+     servicio es secundario. Ocultarlas deja la tabla legible sin scroll.
+     display:none NO altera los índices nth-child, así que el tachado de la
+     patente en las filas anuladas sigue apuntando a la columna correcta. */
+  .ag-table td:nth-child(1):not([colspan]),
+  .ag-table th:nth-child(1),
+  .ag-table th:nth-child(4), .ag-table td:nth-child(4),
+  .ag-table th:nth-child(6), .ag-table td:nth-child(6) { display: none; }
+  .tabla-scroll .ag-table { min-width: 0; }
+}
+
+/* ---- pestañas ----
+   Quebradas en dos filas rompen la metáfora de carpeta (la fila de arriba
+   queda flotando sin línea base) y destruyen la lectura secuencial del flujo.
+   Mejor una sola fila con scroll: la pestaña cortada a la mitad es el propio
+   indicador de que hay más. */
+@media (max-width: 1100px) {
+  .tabs {
+    flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin; scroll-snap-type: x proximity;
+    padding-bottom: 1px; margin-bottom: -1px;
+  }
+  .tab { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; }
+}
+
+/* ---- planificador ---- */
+@media (max-width: 900px) {
+  .agenda-wrap { flex-direction: column; }
+  .backlog { flex: none; max-height: 190px; overflow-y: auto; }
+  .backlog .drop { flex-direction: row; flex-wrap: wrap; }
+  .backlog .drop .card-ot { flex: 1 1 200px; }
+}
+
+/* ---- kanban (JPCB y sus detenciones) ----
+   Con 8 etapas el scroll horizontal es inevitable en desktop, así que la
+   columna se ensancha un poco: se gana legibilidad sin perder nada. */
+.kanban .col { flex: 0 0 184px; }
+@media (max-width: 700px) {
+  /* Apilado: cada etapa es una banda y sus tarjetas van en fila. Las cabeceras
+     azules quedan de índice del proceso. */
+  .kanban { flex-direction: column; overflow-x: visible; }
+  .kanban .col { flex: 1 1 auto; min-height: 0; }
+  .kanban .col .drop { min-height: 36px; flex-direction: row; flex-wrap: wrap; }
+  .kanban .col .drop .card-ot { flex: 1 1 210px; }
+}
+
+/* ---- objetivos táctiles ----
+   La recepción se opera en tablet. 44px es el mínimo para el dedo; casi todos
+   los controles quedaban entre 28 y 37. Solo aplica a punteros gruesos, así
+   que el escritorio no cambia. */
+@media (pointer: coarse) {
+  .tab, .agbtn, .ag-slot, .ag-vista-btn, .ag-stabs button { min-height: 44px; }
+  .tab, .agbtn, .ag-vista-btn { display: inline-flex; align-items: center; justify-content: center; }
+  .agbtn-sm { min-height: 38px; }
+  .ag-cal td { padding: 10px 0; }
+  .firma-limpiar { min-height: 38px; display: inline-flex; align-items: center; }
+  .prep-kit__nav { min-width: 44px; min-height: 44px; }
+}
+
+/* ---- contraste ----
+   El gris sobre blanco daba ~3.1:1 y el ámbar del pill "Agendado" ~3.2:1,
+   bajo el mínimo AA de 4.5:1 — y ese pill es justo el estado que la central
+   más necesita distinguir. Los reemplazos salen de la paleta que ya existe. */
+.agbtn-grey { background: #5f6877; }
+.ag-pill.por { color: #8a5a12; }
+
+/* ---- piso tipográfico ----
+   La bandera de detención era el texto más chico del sistema (9px) siendo la
+   alerta más importante del tablero. */
+.stopflag, .pick { font-size: 10px; padding: 2px 5px; font-weight: 800; }
+.gblock .gdur { font-size: 10px; }
+
+/* ---- columnas vacías ----
+   En un tablero de control visual el ojo debe ir a donde hay carga; una
+   columna en (0) pesaba lo mismo que una con cinco tarjetas. */
+.kanban .col:has(.drop:empty) { border-style: dashed; }
+.kanban .col:has(.drop:empty) h3 { background: #6b7280; }
+.col .count { background: rgba(255, 255, 255, .18); border-radius: 9px; padding: 0 6px; opacity: 1; }
+
+/* ---- mover una orden sin arrastrar ----
+   El drag & drop de HTML5 no dispara eventos en pantalla táctil: en la tablet
+   del taller los tableros eran de solo lectura. Estos controles hacen lo mismo
+   que el arrastre y funcionan en cualquier dispositivo. */
+.ot-mover {
+  margin: 10px 0; padding: 11px 13px; border-radius: 8px;
+  background: var(--tint); border: 1px solid var(--tint-borde);
+}
+.ot-mover__tit {
+  font-size: 11.5px; font-weight: 800; color: var(--navy);
+  text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px;
+}
+.ot-mover__fila { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.ot-mover__lbl { font-size: 12px; color: var(--ink-2); font-weight: 600; }
+.ot-mover select {
+  padding: 7px 9px; border: 1px solid var(--ink-3); border-radius: 6px;
+  font-family: var(--font); font-size: 12.5px; background: #fff; color: var(--ink);
+}
+@media (pointer: coarse) { .ot-mover select { min-height: 44px; } }
+
+/* Alias entre paréntesis en los títulos de vista: la jerga interna (JPCB,
+   pre-picking) sigue existiendo para quien ya la usa, pero el nombre que manda
+   es el que se entiende sin explicación. */
+.vtitle__alias { font-size: 14px; font-weight: 600; color: var(--ink-3); }
+
+/* ---------- corregir una cita ----------
+   Bloque para mover día y hora. Solo aparece al corregir; al agendar de cero
+   la hora ya la eligió al pinchar el cupo. */
+.ag-mover {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: var(--gris, #eef3fb);
+  border: 1px solid var(--borde, #d7dee8);
+  border-radius: 10px;
+  padding: 11px 13px;
+  margin-bottom: 12px;
+}
+.ag-mover label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2, #456);
+}
+.ag-mover input, .ag-mover select {
+  border: 1px solid var(--borde, #d7dee8);
+  border-radius: 7px;
+  padding: 7px 9px;
+  font: inherit;
+  font-size: 13px;
+  background: #fff;
+  min-height: 38px;
+}
+/* Las horas tomadas se ven, pero no se pueden elegir: esconderlas haría creer
+   que el día está vacío. */
+.ag-mover select option:disabled { color: #a4b0c0; }
+.ag-mover__nota {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--ink-3, #789);
+}
+@media (pointer: coarse) {
+  .ag-mover input, .ag-mover select { min-height: 44px; }
+}
+
+/* ---------- comentario del agendamiento ----------
+   En la recepción va arriba y destacado: si aparece al final, quien recibe el
+   auto ya tomó las decisiones sin haberlo leído. */
+.rec-coment {
+  background: #fff8e6;
+  border: 1px solid #f0d9a8;
+  border-left: 4px solid #c87900;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+.rec-coment__t {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: #8a5600;
+  margin-bottom: 3px;
+}
+.rec-coment p { margin: 0; font-size: 13.5px; line-height: 1.45; color: var(--ink-1, #16324f); }
+
+/* El campo en el formulario de agendar ocupa las dos columnas: un comentario
+   en media línea no se alcanza a leer mientras se escribe. */
+.ag-coment-lbl { grid-column: 1 / -1; }
+.ag-coment-lbl textarea {
+  width: 100%;
+  border: 1px solid var(--borde, #d7dee8);
+  border-radius: 7px;
+  padding: 8px 9px;
+  font: inherit;
+  font-size: 13px;
+  resize: vertical;
+  min-height: 52px;
+}
+.ag-opc { font-weight: 400; color: var(--ink-3, #789); font-size: 11.5px; }
+
+/* Marca en la tabla de la agenda: se ve de una que esa cita trae una nota. */
+.ag-tiene-coment {
+  display: inline-block;
+  margin-left: 5px;
+  cursor: help;
+  font-size: 12px;
+}
+
+
+/* ============================================================
+   Detalle de una recepción ya hecha
+   ============================================================ */
+.recep-item[role="button"] { cursor: pointer; transition: box-shadow .12s, transform .1s; }
+.recep-item[role="button"]:hover { box-shadow: 0 4px 14px rgba(13,47,90,.14); transform: translateY(-1px); }
+.recep-item[role="button"]:focus-visible { outline: 2px solid var(--azul, #0d2f5a); outline-offset: 2px; }
+
+.rec-det {
+  background: #fff;
+  border-radius: 14px;
+  width: min(940px, 96vw);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 18px 50px rgba(0,0,0,.3);
+  overflow: hidden;
+}
+.rec-det__cab {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--azulGrad, linear-gradient(135deg,#0d2f5a,#1c4c8c));
+  color: #fff;
+  flex: none;
+}
+.rec-det__cab h3 { margin: 0; font-size: 17px; }
+.rec-det__cab p { margin: 3px 0 0; font-size: 12.5px; opacity: .85; }
+.rec-det__x {
+  border: 0; background: rgba(255,255,255,.16); color: #fff;
+  width: 34px; height: 34px; border-radius: 8px; font-size: 20px;
+  cursor: pointer; line-height: 1; flex: none;
+}
+.rec-det__cuerpo { padding: 16px 18px; overflow: auto; flex: 1 1 auto; }
+.rec-det__pie {
+  display: flex; justify-content: flex-end; gap: 10px;
+  padding: 12px 18px; border-top: 1px solid var(--borde, #d7dee8);
+  background: var(--gris, #eef3fb); flex: none;
+}
+
+.rec-det__blk { margin-bottom: 18px; }
+.rec-det__blk h4 {
+  margin: 0 0 8px; font-size: 12px; text-transform: uppercase;
+  letter-spacing: .4px; color: var(--ink-3, #789);
+  border-bottom: 1px solid var(--borde, #d7dee8); padding-bottom: 5px;
+}
+.rec-det__n { font-weight: 400; text-transform: none; letter-spacing: 0; }
+.rec-det__blk p { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-1, #16324f); }
+.rec-det__vacio { color: var(--ink-3, #789); font-style: italic; }
+.rec-det__nota { font-size: 12px; color: var(--ink-3, #789); margin-top: 7px !important; }
+.rec-det__nota.falta { color: #a8202a; font-weight: 600; }
+
+.rec-det__datos {
+  display: grid; grid-template-columns: auto 1fr auto 1fr;
+  gap: 5px 12px; margin: 0; font-size: 13px;
+}
+.rec-det__datos dt { color: var(--ink-3, #789); }
+.rec-det__datos dd { margin: 0; color: var(--ink-1, #16324f); font-weight: 600; word-break: break-word; }
+/* Lo que falta se ve en rojo: es justo lo que se pregunta después. */
+.rec-det__datos dd.falta { color: #a8202a; }
+
+.rec-det__acc { display: flex; flex-wrap: wrap; gap: 5px; }
+.rec-acc {
+  font-size: 12px; padding: 3px 9px; border-radius: 12px;
+  border: 1px solid var(--borde, #d7dee8);
+}
+.rec-acc.si { background: #e8f6ed; border-color: #b9e2c8; color: #14663a; font-weight: 600; }
+.rec-acc.no { background: #fff; color: #a4b0c0; }
+
+.rec-det__fotos {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px;
+}
+.rec-foto { margin: 0; }
+.rec-foto__img {
+  aspect-ratio: 4 / 3; border: 1px solid var(--borde, #d7dee8); border-radius: 9px;
+  overflow: hidden; background: var(--gris, #eef3fb);
+  display: flex; align-items: center; justify-content: center;
+}
+.rec-foto__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rec-foto__cargando, .rec-foto__no { font-size: 11.5px; color: var(--ink-3, #789); }
+.rec-foto.vacia .rec-foto__img { border-style: dashed; }
+.rec-foto figcaption { font-size: 11.5px; color: var(--ink-2, #456); margin-top: 4px; text-align: center; }
+
+.rec-det__firmas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.rec-firma__img {
+  height: 92px; border: 1px solid var(--borde, #d7dee8); border-radius: 9px;
+  background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.rec-firma__img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.rec-firma.vacia .rec-firma__img { border-style: dashed; background: var(--gris, #eef3fb); }
+.rec-firma figcaption { font-size: 11.5px; color: var(--ink-2, #456); margin-top: 4px; text-align: center; }
+
+.rec-det__hist { list-style: none; margin: 0; padding: 0; font-size: 12.5px; }
+.rec-det__hist li {
+  padding: 6px 0; border-bottom: 1px solid #eef1f5;
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.rec-det__hist li span { color: var(--ink-3, #789); font-size: 11.5px; }
+
+@media (max-width: 720px) {
+  .rec-det__datos { grid-template-columns: auto 1fr; }
+}
+@media (pointer: coarse) {
+  .rec-det__x { width: 44px; height: 44px; }
+}
+
+
+/* ---------- control de las fotos de la inspección ---------- */
+.foto-resumen {
+  margin: 0 0 10px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.foto-resumen.falta { background: #fff6e6; border: 1px solid #f0d9a8; color: #8a5600; }
+.foto-resumen.ok    { background: #e8f6ed; border: 1px solid #b9e2c8; color: #14663a; }
+
+/* Los recuadros que faltan se ven distintos desde el principio, no recién
+   cuando el sistema se niega a ingresar el vehículo. */
+.photo-slot.photo-req { border-style: dashed; border-color: #e0b872; background: #fffdf7; }
+.photo-slot.photo-falta {
+  border-color: #c0392b !important;
+  border-style: solid !important;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, .16);
+}
+.photo-opc { font-style: normal; font-weight: 400; color: var(--ink-3, #789); font-size: 10.5px; }
+
+
+/* ---------------- Mapa de daños (Recepción) ----------------
+   Se usa de pie y con el cliente al lado, muchas veces en un tablet: los
+   objetivos táctiles van grandes y las vistas se acomodan solas al ancho. */
+.dm { margin: 0 0 14px; }
+
+.dm-tipos { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.dm-tipo {
+  font: 600 13px/1 inherit;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 13px;
+  background: #fff; color: #20344f;
+  border: 1.5px solid #d7dee8; border-radius: 999px;
+  cursor: pointer;
+}
+.dm-tipo:hover { border-color: #98a9c0; }
+.dm-tipo.is-on { border-color: #20344f; background: #eef3fb; box-shadow: inset 0 0 0 1px #20344f; }
+.dm-tipo i { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.dm-ayuda { font-size: 12.5px; color: #6e7d91; }
+
+.dm-vistas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+.dm-vista { margin: 0; background: #fff; border: 1px solid #e6eaf2; border-radius: 10px; padding: 8px 8px 4px; }
+.dm-vista figcaption {
+  font: 700 10.5px/1 inherit; letter-spacing: .06em; text-transform: uppercase;
+  color: #8a97a8; margin-bottom: 4px;
+}
+/* touch-action para que arrastrar sobre el diagrama haga scroll de la página y
+   no se coma el gesto: en un tablet, si el SVG captura el arrastre, la ficha
+   deja de poder desplazarse. */
+.dm-svg { width: 100%; height: auto; display: block; cursor: crosshair; touch-action: pan-y; }
+.dm-marca { cursor: pointer; }
+
+.dm-lista { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 5px; }
+.dm-lista li {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 13px; color: #20344f;
+  background: #f6f8fc; border-radius: 8px; padding: 7px 10px;
+}
+.dm-n {
+  width: 21px; height: 21px; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; color: #fff; font: 700 11px/1 inherit;
+}
+.dm-quitar {
+  margin-left: auto;
+  border: 0; background: none; cursor: pointer;
+  color: #8a97a8; font-size: 15px; line-height: 1; padding: 4px 6px;
+}
+.dm-quitar:hover { color: #a8202a; }
+
+.dm-vacio { margin: 10px 0 0; font-size: 13px; color: #6e7d91; font-style: italic; }
+.rec-det__danos { margin: 0; padding-left: 18px; display: grid; gap: 3px; font-size: 13px; }
+
+/* Autorización comercial: casilla grande, se marca de pie y con el cliente al lado. */
+.cons-linea { display: flex; gap: 11px; align-items: flex-start; font-size: 14px; line-height: 1.45; cursor: pointer; }
+.cons-linea input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; cursor: pointer; }
+.cons-nota { margin: 9px 0 0; font-size: 12.5px; color: #6e7d91; line-height: 1.5; }
+
+/* Botón de acción dentro del título de un bloque (editar datos del cliente). */
+.blk-accion {
+  margin-left: 10px; vertical-align: middle;
+  font: 600 12px/1 inherit; color: #1f5fb4;
+  background: none; border: 1px solid #cfdcef; border-radius: 999px;
+  padding: 5px 12px; cursor: pointer;
+}
+.blk-accion:hover { background: #eef3fb; border-color: #1f5fb4; }
+.rc-cli-error {
+  grid-column: 1 / -1; margin: 2px 0 0; padding: 8px 11px;
+  font-size: 13px; color: #8a1c24;
+  background: #fdf0f0; border: 1px solid #f0c4c8; border-radius: 8px;
+}
+.rc-cli-acciones { grid-column: 1 / -1; display: flex; gap: 9px; justify-content: flex-end; margin-top: 4px; }

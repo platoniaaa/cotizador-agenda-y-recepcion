@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <!-- Pages sirve el HTML con max-age=600. Sin esto el navegador sigue
+       pidiendo el ?v= anterior durante diez minutos y se responde solo con
+       el JS viejo: se publica un cambio y el usuario jura que no funciona.
+       cliente.html ya lo traia; el resto no. -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirma tu hora · Postventa</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="img/logo.png">
+  <link rel="stylesheet" href="css/estilos.css?v=87d1210">
+  <link rel="stylesheet" href="css/confirmar.css?v=87d1210">
+</head>
+<!-- Página PÚBLICA: la abre el cliente desde su correo, sin cuenta ni sesión.
+     La credencial es el token del enlace, y por eso la base solo devuelve lo
+     justo para reconocer la cita: nada de RUT, teléfono ni correo. -->
+<body class="conf">
+
+  <main class="conf-caja">
+    <header class="conf-cab">
+      <img src="img/logo.png" alt="Postventa" width="704" height="158">
+      <span>Post Venta</span>
+    </header>
+
+    <div id="confCuerpo" class="conf-cuerpo">
+      <div class="conf-cargando"><span class="conf-spin"></span> Buscando tu hora…</div>
+    </div>
+
+    <footer class="conf-pie">
+      ¿Dudas? Escríbenos a <a href="mailto:postventa@example.com">postventa@example.com</a>
+    </footer>
+  </main>
+
+  <script src="js/agenda-config.js?v=87d1210"></script>
+  <script src="js/demo-datos.js"></script>
+  <script src="js/demo-api.js"></script>
+  <script src="js/demo-franja.js"></script>
+  <script src="js/confirmar.js?v=87d1210"></script>
+</body>
+</html>
