@@ -1,0 +1,163 @@
+<!doctype html>
+
+<html lang="es-CL" data-auth="require">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <!-- Pages sirve el HTML con max-age=600. Sin esto el navegador sigue
+
+       pidiendo el ?v= anterior durante diez minutos y se responde solo con
+
+       el JS viejo: se publica un cambio y el usuario jura que no funciona.
+
+       cliente.html ya lo traia; el resto no. -->
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+  <meta http-equiv="Pragma" content="no-cache">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Plataforma de Postventa</title>
+
+  <link rel="icon" href="img/logo.png">
+
+  <script src="js/agenda-config.js?v=87d1210"></script>
+
+  <script src="js/demo-datos.js"></script>
+
+  <script src="js/demo-api.js"></script>
+
+  <script src="js/demo-franja.js"></script>
+  <script src="js/demo-tutorial.js"></script>
+
+  <script src="js/auth.js?v=87d1210"></script>
+
+  <link rel="stylesheet" href="css/estilos.css?v=87d1210">
+
+  <link rel="stylesheet" href="css/inicio.css?v=87d1210">
+
+</head>
+
+<body class="inicio">
+
+
+
+  <header class="topbar">
+
+    <div class="topbar__inner">
+
+      <div class="brand">
+
+        <img class="brand__logo" src="img/logo.png" alt="Postventa" width="704" height="158">
+
+        <span class="brand__sep"></span>
+
+        <span class="brand__sub">Postventa</span>
+
+        <span class="brand__badge">Uso interno</span>
+
+      </div>
+
+      <nav class="topbar__nav">
+
+        <span id="authUser"></span>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+
+  <main class="inicio__main">
+
+    <h1 class="inicio__titulo">Plataforma de Postventa</h1>
+
+    <p class="inicio__lead">Elige el módulo con el que vas a trabajar.</p>
+
+
+
+    <div class="apps">
+
+      <a class="app app--cotizador" href="cotizador.html">
+
+        <span class="app__icono" aria-hidden="true">🧮</span>
+
+        <span class="app__nombre">Cotizador</span>
+
+        <span class="app__desc">Precios de mantención por marca, modelo y kilometraje</span>
+
+      </a>
+
+
+
+      <a class="app app--agenda" href="taller.html?vista=agenda">
+
+        <span class="app__icono" aria-hidden="true">🗓️</span>
+
+        <span class="app__nombre">Agenda</span>
+
+        <span class="app__desc">Agendar horas y revisar las solicitudes de los clientes</span>
+
+      </a>
+
+
+
+      <a class="app app--recepcion" href="taller.html?vista=recepcion">
+
+        <span class="app__icono" aria-hidden="true">📋</span>
+
+        <span class="app__nombre">Recepción</span>
+
+        <span class="app__desc">Recibir el vehículo: accesorios, fotos y firmas</span>
+
+      </a>
+
+
+
+      <!-- Post Venta (los 10 módulos migrados desde Streamlit) sale del inicio
+
+           por decisión de Ignacio el 13-08-2026. Las páginas siguen en el repo
+
+           —postventa.html con pv-app.js / pv-datos.js / pv-ui.js, y ots.html
+
+           con ots.js— pero ya no hay camino hacia ellas desde la plataforma.
+
+           Para revivirlo basta con volver a poner esta tarjeta. -->
+
+    </div>
+
+  </main>
+
+
+
+  <footer class="foot">
+
+    <div class="foot__inner">
+
+      <span>Automotora Ejemplo S.A. · Plataforma de Postventa</span>
+
+      <span id="footFecha" class="foot__fecha"></span>
+
+    </div>
+
+  </footer>
+
+
+
+  <script>
+
+    document.getElementById("footFecha").textContent =
+
+      new Date().toLocaleDateString("es-CL", { day: "numeric", month: "long", year: "numeric" });
+
+  </script>
+
+</body>
+
+</html>
+

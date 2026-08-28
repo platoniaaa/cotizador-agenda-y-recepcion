@@ -1,163 +1,243 @@
-<!doctype html>
-
-<html lang="es-CL" data-auth="require">
-
+<!DOCTYPE html>
+<html lang="es-CL">
 <head>
-
-  <meta charset="utf-8">
-
-  <!-- Pages sirve el HTML con max-age=600. Sin esto el navegador sigue
-
-       pidiendo el ?v= anterior durante diez minutos y se responde solo con
-
-       el JS viejo: se publica un cambio y el usuario jura que no funciona.
-
-       cliente.html ya lo traia; el resto no. -->
-
+  <meta charset="UTF-8">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-
   <meta http-equiv="Pragma" content="no-cache">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plataforma de Postventa</title>
-
-  <link rel="icon" href="img/logo.png">
-
-  <script src="js/agenda-config.js?v=87d1210"></script>
-
-  <script src="js/demo-datos.js"></script>
-
-  <script src="js/demo-api.js"></script>
-
-  <script src="js/demo-franja.js"></script>
-  <script src="js/demo-tutorial.js"></script>
-
-  <script src="js/auth.js?v=87d1210"></script>
-
-  <link rel="stylesheet" href="css/estilos.css?v=87d1210">
-
-  <link rel="stylesheet" href="css/inicio.css?v=87d1210">
-
+  <meta name="description" content="Cotización, agendamiento y recepción de vehículos en un solo sistema. Demostración con datos de ejemplo.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="css/landing.css">
 </head>
+<body>
 
-<body class="inicio">
+<!-- Portada. La demostración se ofrece de entrada y otra vez al final: quien
+     ya sabe lo que busca no tiene por qué leerse la página entera para llegar
+     a probarla. -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero__barra">
+      <img class="hero__logo" src="img/logo.png" alt="Postventa" width="704" height="158">
+      <span class="hero__nav"><a href="LEEME.html">Cómo probar la demostración</a></span>
+    </div>
 
+    <h1>El auto entra al taller con todo escrito.</h1>
+    <p class="hero__lead">Cotización, agendamiento y recepción en un solo sistema. Lo que se
+      le prometió al cliente y el estado en que llegó su vehículo quedan registrados,
+      firmados y con fotos, antes de que la orden de trabajo se abra.</p>
 
+    <div class="hero__cta">
+      <a class="btn btn--pri" href="plataforma.html">Entrar a la demostración →</a>
+      <a class="btn btn--sec" href="#como-funciona">Ver cómo funciona</a>
+    </div>
+    <p class="hero__nota">Funciona de verdad, con datos de ejemplo. No hay que registrarse.</p>
+  </div>
+</header>
 
-  <header class="topbar">
+<section>
+  <div class="wrap">
+    <p class="rotulo">El problema</p>
+    <h2>Casi todos los reclamos de postventa nacen de algo que nadie escribió</h2>
+    <p>Un valor que se dio por teléfono y después no calza. Una hora que se acordó por
+      WhatsApp y que nadie confirmó. Un rayón que el cliente jura que no traía y que el taller
+      jura que sí. Un repuesto que el cliente pidió no cambiar y que se cambió igual.</p>
+    <p>Ninguno de esos casos es un problema de mala fe. Son problemas de <strong>registro</strong>:
+      la información existió, pero quedó en la cabeza de alguien, en un cuaderno o en un chat.
+      Cuando hay que responder tres semanas después, no está.</p>
+  </div>
+</section>
 
-    <div class="topbar__inner">
+<section class="alt" id="como-funciona">
+  <div class="wrap">
+    <p class="rotulo">Cómo funciona</p>
+    <h2>Un solo recorrido, de la consulta a la orden de trabajo</h2>
+    <p class="dim">Cada paso recibe lo que dejó el anterior. Nadie vuelve a escribir la
+      patente, el nombre del cliente ni la mantención que se acordó.</p>
 
-      <div class="brand">
-
-        <img class="brand__logo" src="img/logo.png" alt="Postventa" width="704" height="158">
-
-        <span class="brand__sep"></span>
-
-        <span class="brand__sub">Postventa</span>
-
-        <span class="brand__badge">Uso interno</span>
-
+    <div class="flujo">
+      <div class="paso">
+        <span class="paso__n">01</span>
+        <h3>Se cotiza</h3>
+        <p>Con la patente basta: aparecen el vehículo y su dueño. La plataforma muestra las
+          operaciones de la mantención que corresponde, los repuestos con su disponibilidad
+          en bodega y el valor, y emite la orden en PDF.</p>
       </div>
-
-      <nav class="topbar__nav">
-
-        <span id="authUser"></span>
-
-      </nav>
-
+      <div class="paso">
+        <span class="paso__n">02</span>
+        <h3>Se agenda</h3>
+        <p>La cotización pasa a la agenda sin volver a escribirla. El cliente también puede
+          pedir su hora desde una página pública, sin instalar nada, y esa solicitud llega a
+          la bandeja del asesor para que la confirme.</p>
+      </div>
+      <div class="paso">
+        <span class="paso__n">03</span>
+        <h3>Se recibe el vehículo</h3>
+        <p>Kilometraje real, combustible, accesorios, inspección fotográfica, daños marcados
+          sobre un diagrama del auto y las dos firmas. De ahí sale el acta de recepción.</p>
+      </div>
+      <div class="paso">
+        <span class="paso__n">04</span>
+        <h3>Se abre la orden de trabajo</h3>
+        <p>Con su número correlativo. El acta viaja con ella: quien reciba el auto en el
+          taller ve el kilometraje real y lo que el cliente pidió, no solo lo que dice la cita.</p>
+      </div>
     </div>
+  </div>
+</section>
 
-  </header>
+<section>
+  <div class="wrap">
+    <p class="rotulo">La recepción</p>
+    <h2>Es el momento que define si hay reclamo o no</h2>
+    <p>Es la parte del proceso donde más se juega el taller, y es donde la plataforma pone
+      más cuidado. Tres cosas que no dependen de la memoria de nadie:</p>
 
-
-
-  <main class="inicio__main">
-
-    <h1 class="inicio__titulo">Plataforma de Postventa</h1>
-
-    <p class="inicio__lead">Elige el módulo con el que vas a trabajar.</p>
-
-
-
-    <div class="apps">
-
-      <a class="app app--cotizador" href="cotizador.html">
-
-        <span class="app__icono" aria-hidden="true">🧮</span>
-
-        <span class="app__nombre">Cotizador</span>
-
-        <span class="app__desc">Precios de mantención por marca, modelo y kilometraje</span>
-
-      </a>
-
-
-
-      <a class="app app--agenda" href="taller.html?vista=agenda">
-
-        <span class="app__icono" aria-hidden="true">🗓️</span>
-
-        <span class="app__nombre">Agenda</span>
-
-        <span class="app__desc">Agendar horas y revisar las solicitudes de los clientes</span>
-
-      </a>
-
-
-
-      <a class="app app--recepcion" href="taller.html?vista=recepcion">
-
-        <span class="app__icono" aria-hidden="true">📋</span>
-
-        <span class="app__nombre">Recepción</span>
-
-        <span class="app__desc">Recibir el vehículo: accesorios, fotos y firmas</span>
-
-      </a>
-
-
-
-      <!-- Post Venta (los 10 módulos migrados desde Streamlit) sale del inicio
-
-           por decisión de Ignacio el 13-08-2026. Las páginas siguen en el repo
-
-           —postventa.html con pv-app.js / pv-datos.js / pv-ui.js, y ots.html
-
-           con ots.js— pero ya no hay camino hacia ellas desde la plataforma.
-
-           Para revivirlo basta con volver a poner esta tarjeta. -->
-
+    <div class="detalle">
+      <div>
+        <h3>Inspección fotográfica que se revisa sola</h3>
+        <p>Siete fotos obligatorias, y no se puede ingresar el vehículo sin ellas. Cada una se
+          revisa antes de guardarse: si salió borrosa, muy oscura o es la misma foto repetida
+          en dos recuadros, se rechaza y se dice por qué. Una foto movida no sirve de prueba.</p>
+      </div>
+      <div>
+        <h3>Los daños se marcan sobre el auto, no se describen</h3>
+        <p>Cinco vistas del vehículo. El asesor elige el tipo —rayón, abolladura, quebrado,
+          falta una pieza, pintura— y toca dónde viene. <em>«Rayón en la puerta trasera
+          derecha»</em> depende de quién cuente las puertas y desde dónde mire; un punto en un
+          dibujo no depende de nada.</p>
+      </div>
+      <div>
+        <h3>El acta se firma con las condiciones a la vista</h3>
+        <p>El documento incluye las condiciones generales de recepción y reparación, y el
+          tratamiento de datos personales, sobre la firma y no después. Queda registrada la
+          versión exacta del texto que se le mostró: si mañana cambia una cláusula, se puede
+          responder qué firmó ese cliente ese día.</p>
+      </div>
     </div>
+  </div>
+</section>
 
-  </main>
+<section class="alt">
+  <div class="wrap">
+    <p class="rotulo">La diferencia</p>
+    <h2>Lo mismo, dos veces</h2>
+    <p class="dim">Un cliente reclama en la entrega que le cobran un filtro que pidió no cambiar.</p>
 
-
-
-  <footer class="foot">
-
-    <div class="foot__inner">
-
-      <span>Automotora Ejemplo S.A. · Plataforma de Postventa</span>
-
-      <span id="footFecha" class="foot__fecha"></span>
-
+    <div class="compara">
+      <div class="caja caja--antes">
+        <p class="caja__t">Sin registro</p>
+        <ul>
+          <li>El asesor que lo atendió está de turno libre.</li>
+          <li>La cotización se dio por teléfono; no quedó papel.</li>
+          <li>Nadie anotó que el cliente sacó ese ítem.</li>
+          <li>Se discute y, casi siempre, el taller cede.</li>
+        </ul>
+      </div>
+      <div class="caja caja--ahora">
+        <p class="caja__t">Con la plataforma</p>
+        <ul>
+          <li>La orden en PDF dice qué se incluyó y qué no.</li>
+          <li>Lo excluido viaja a la cita y a la recepción.</li>
+          <li>Bodega no preparó ese repuesto.</li>
+          <li>El acta firmada lo confirma. No hay discusión.</li>
+        </ul>
+      </div>
     </div>
+  </div>
+</section>
 
-  </footer>
+<section>
+  <div class="wrap">
+    <p class="rotulo">Los módulos</p>
+    <h2>Tres pantallas para el personal y una para el cliente</h2>
 
+    <div class="modulos">
+      <div class="modulo">
+        <span class="quien">Asesor de servicio</span>
+        <h3>Cotizador</h3>
+        <p>Pautas de mantención por marca, modelo, versión y kilometraje, con los precios y
+          el stock de la empresa. Permite cotizar solo una parte cuando el cliente no quiere
+          todo, y el total se rehace solo. Emite la orden en PDF a nombre del cliente.</p>
+      </div>
+      <div class="modulo">
+        <span class="quien">Asesor · central de citas</span>
+        <h3>Agenda</h3>
+        <p>Horas por sucursal, con los cupos del día a la vista. Recibe las solicitudes que
+          llegan desde la web y las citas que vienen del cotizador. Las citas se corrigen sin
+          anularlas, y queda anotado qué cambió.</p>
+      </div>
+      <div class="modulo">
+        <span class="quien">Recepción · mesón</span>
+        <h3>Recepción</h3>
+        <p>El acta completa: datos del cliente corregibles con él al frente, kilometraje real,
+          accesorios, fotos, mapa de daños, autorización de datos y firmas. Al cerrar, abre la
+          orden de trabajo y descarga el acta.</p>
+      </div>
+      <div class="modulo">
+        <span class="quien">Cliente · página pública</span>
+        <h3>Vista del cliente</h3>
+        <p>Sin clave y sin instalar nada. El cliente elige su auto, ve qué incluye la
+          mantención y pide una hora. Las marcas que se agendan en el sistema del fabricante
+          se derivan automáticamente allá.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="alt">
+  <div class="wrap">
+    <p class="rotulo">Ficha</p>
+    <h2>Cómo se instala y cómo se usa</h2>
 
-  <script>
+    <table class="ficha">
+      <tbody>
+        <tr><th>Dónde corre</th>
+            <td>En el navegador. No se instala nada en los equipos del taller ni se pide una
+              aplicación al cliente.</td></tr>
+        <tr><th>En qué equipos</th>
+            <td>Computador del mesón y tablet. La recepción está pensada para usarse de pie,
+              con el cliente al lado: objetivos grandes y firma con el dedo.</td></tr>
+        <tr><th>Varias sucursales</th>
+            <td>Cada sucursal tiene su bandeja y sus correlativos. Varias estaciones de la
+              misma sucursal trabajan a la vez sobre la misma agenda sin pisarse.</td></tr>
+        <tr><th>Documentos que emite</th>
+            <td>Orden de mantención y acta de recepción, ambos en PDF, con el mismo formato en
+              todos los equipos.</td></tr>
+        <tr><th>Avisos al cliente</th>
+            <td>Confirmación al agendar y recordatorios antes de la cita, con un enlace para
+              confirmar o cancelar. Se configuran al instalar.</td></tr>
+        <tr><th>Datos personales</th>
+            <td>El acta incluye el tratamiento de datos conforme a la Ley 19.628 y a la Ley
+              21.719, con la autorización comercial separada de las comunicaciones del servicio.</td></tr>
+        <tr><th>Catálogo</th>
+            <td>Se carga con las pautas, los precios y el inventario de la empresa. La
+              demostración trae <code>11</code> marcas y más de <code>270</code> pautas.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-    document.getElementById("footFecha").textContent =
+<section class="cierre">
+  <div class="wrap">
+    <p class="rotulo" style="color: rgba(255,255,255,.55)">Pruébala</p>
+    <h2>Se ve mejor funcionando</h2>
+    <p>Puedes cotizar, agendar y recibir un vehículo de principio a fin, con los documentos
+      que emite. Adentro hay un recorrido guiado que va indicando paso a paso qué hacer y por
+      qué importa. Toma unos diez minutos.</p>
+    <div class="hero__cta">
+      <a class="btn btn--pri" href="plataforma.html">Entrar a la demostración →</a>
+      <a class="btn btn--sec" href="LEEME.html">Qué probar y con qué patentes</a>
+    </div>
+  </div>
+</section>
 
-      new Date().toLocaleDateString("es-CL", { day: "numeric", month: "long", year: "numeric" });
-
-  </script>
+<div class="wrap pie">
+  Demostración con datos de ejemplo. Los clientes, patentes y RUT son inventados.
+</div>
 
 </body>
-
 </html>
-

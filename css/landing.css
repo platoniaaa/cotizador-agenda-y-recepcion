@@ -1,0 +1,206 @@
+/* ============================================================
+   Landing de presentación.
+
+   Es lo primero que ve un cliente potencial, antes de entrar a la
+   demostración. No usa la hoja de estilos de la plataforma a propósito: son
+   dos cosas distintas —una página que se lee y una herramienta que se opera—
+   y mezclarlas obliga a pelear con reglas pensadas para formularios.
+
+   Misma familia visual que el documento que se les envía: Archivo para los
+   títulos, una serif para el texto corrido y monoespaciada para los rótulos.
+   El acento ocre sale del propio producto: es el color con que la plataforma
+   marca un rayón en el mapa de daños.
+   ============================================================ */
+
+:root {
+  --ground:  #f2f4f8;
+  --surface: #ffffff;
+  --raised:  #e9edf5;
+  --ink:     #12203a;
+  --ink-2:   #3d4c66;
+  --ink-3:   #6b7889;
+  --line:    #d6ddea;
+  --brand:   #001b6c;
+  /* Las bandas de texto blanco necesitan un fondo que siga siendo oscuro en
+     los dos temas: --brand se aclara en modo oscuro para poder leerse. */
+  --panel:   #001b6c;
+  --accent:  #8f5808;
+  /* El botón principal lleva tokens propios. Usar --accent de fondo con texto
+     blanco funciona en claro, pero en oscuro el acento se ACLARA para poder
+     leerse sobre fondo negro, y ahí blanco sobre ocre claro da 2,2 de
+     contraste: el llamado a la acción más importante de la página quedaba
+     ilegible justo para quien usa el tema oscuro. */
+  --cta-fondo: #8f5808;
+  --cta-tinta: #ffffff;
+  --ok:      #0a6b43;
+  --alert:   #96222c;
+
+  --display: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --body:    "Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono:    "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:  #0c1320;
+    --surface: #141d2e;
+    --raised:  #1b2639;
+    --ink:     #e9eef7;
+    --ink-2:   #b6c2d6;
+    --ink-3:   #8492a8;
+    --line:    #26314a;
+    --brand:   #9db4ff;
+    --panel:   #101c3c;
+    --accent:  #dfa44c;
+    --cta-fondo: #dfa44c;
+    --cta-tinta: #241603;
+    --ok:      #4cbf8a;
+    --alert:   #e2707a;
+  }
+}
+:root[data-theme="dark"] {
+  --ground:  #0c1320;
+  --surface: #141d2e;
+  --raised:  #1b2639;
+  --ink:     #e9eef7;
+  --ink-2:   #b6c2d6;
+  --ink-3:   #8492a8;
+  --line:    #26314a;
+  --brand:   #9db4ff;
+  --panel:   #101c3c;
+  --accent:  #dfa44c;
+  --cta-fondo: #dfa44c;
+  --cta-tinta: #241603;
+  --ok:      #4cbf8a;
+  --alert:   #e2707a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- botones ----------
+   Se usa `background-color` y no la abreviatura `background`: con una variable
+   dentro, la propiedad larga deja explícito qué se está pintando. */
+.btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--display); font-weight: 600; font-size: 16px;
+  text-decoration: none; cursor: pointer;
+  padding: 14px 26px; border-radius: 999px;
+  border: 1.5px solid transparent;
+  transition: transform .12s ease, background .15s ease, border-color .15s ease;
+}
+.btn--pri { background-color: var(--cta-fondo); color: var(--cta-tinta); border-color: var(--cta-fondo); }
+.btn--pri:hover { transform: translateY(-1px); filter: brightness(.88); }
+.btn--sec { background: transparent; color: #fff; border-color: rgba(255,255,255,.45); }
+.btn--sec:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.8); }
+.btn--claro { background-color: var(--brand); color: #fff; border-color: var(--brand); }
+.btn--claro:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
+
+/* ---------- portada ---------- */
+.hero { background-color: var(--panel); color: #fff; padding: 30px 0 62px; }
+.hero__barra { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 52px; }
+.hero__logo { height: 34px; width: auto; filter: brightness(0) invert(1); }
+.hero__nav { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.6); }
+.hero__nav a { color: rgba(255,255,255,.82); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); }
+.hero__nav a:hover { color: #fff; border-color: #fff; }
+.hero h1 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(34px, 6vw, 56px); line-height: 1.03; letter-spacing: -.024em;
+  margin: 0 0 20px; text-wrap: balance;
+}
+.hero__lead {
+  font-size: clamp(18px, 2.3vw, 21px); line-height: 1.5;
+  color: rgba(255,255,255,.85); margin: 0 0 32px; max-width: 34em;
+}
+.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.hero__nota { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); margin: 18px 0 0; }
+
+/* ---------- bandas ---------- */
+section { padding: 56px 0; }
+section.alt { background-color: var(--surface); border-block: 1px solid var(--line); }
+
+.rotulo {
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px;
+}
+h2 {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(24px, 3.6vw, 32px); line-height: 1.14; letter-spacing: -.018em;
+  margin: 0 0 18px; text-wrap: balance;
+}
+h3 { font-family: var(--display); font-weight: 600; font-size: 18px; line-height: 1.3; margin: 0 0 6px; }
+p { margin: 0 0 16px; max-width: 65ch; }
+p:last-child { margin-bottom: 0; }
+strong { font-weight: 600; }
+.dim { color: var(--ink-2); }
+
+/* ---------- flujo numerado: es una secuencia real ---------- */
+.flujo { display: grid; gap: 2px; margin-top: 26px; background-color: var(--line);
+         border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.paso { background-color: var(--surface); padding: 20px 22px;
+        display: grid; grid-template-columns: 42px 1fr; gap: 4px 16px; }
+section.alt .paso { background-color: var(--ground); }
+.paso__n { grid-row: 1 / span 2; font-family: var(--mono); font-size: 13px;
+           font-weight: 600; color: var(--accent); padding-top: 3px; }
+.paso h3 { margin: 0; }
+.paso p { margin: 0; font-size: 15.5px; color: var(--ink-2); }
+
+/* ---------- detalle con barra ---------- */
+.detalle { margin-top: 24px; display: grid; gap: 20px; }
+.detalle > div { padding-left: 18px; border-left: 2px solid var(--accent); }
+.detalle p { font-size: 16px; color: var(--ink-2); margin: 0; }
+
+/* ---------- comparación ---------- */
+.compara { display: grid; gap: 14px; margin-top: 24px; }
+@media (min-width: 700px) { .compara { grid-template-columns: 1fr 1fr; gap: 18px; } }
+.caja { border: 1px solid var(--line); border-radius: 4px; padding: 20px 22px; background-color: var(--surface); }
+section.alt .caja { background-color: var(--ground); }
+.caja__t { font-family: var(--mono); font-size: 10.5px; font-weight: 600;
+           letter-spacing: .16em; text-transform: uppercase; margin: 0 0 10px; }
+.caja--antes { border-left: 3px solid var(--alert); }
+.caja--antes .caja__t { color: var(--alert); }
+.caja--ahora { border-left: 3px solid var(--ok); }
+.caja--ahora .caja__t { color: var(--ok); }
+.caja ul { margin: 0; padding-left: 18px; }
+.caja li { margin: 7px 0; font-size: 15.5px; color: var(--ink-2); }
+
+/* ---------- módulos ---------- */
+.modulos { display: grid; gap: 0; margin-top: 24px; }
+.modulo { padding: 22px 0; border-top: 1px solid var(--line); }
+.modulo:first-child { border-top: 0; padding-top: 6px; }
+.modulo p { font-size: 16px; color: var(--ink-2); margin: 6px 0 0; }
+.quien { font-family: var(--mono); font-size: 11px; font-weight: 500;
+         letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+
+/* ---------- ficha ---------- */
+.ficha { width: 100%; border-collapse: collapse; margin-top: 22px; font-size: 15.5px; }
+.ficha th, .ficha td { text-align: left; padding: 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.ficha th { font-family: var(--mono); font-size: 11px; font-weight: 600;
+            letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+            width: 34%; padding-right: 20px; }
+.ficha td { color: var(--ink-2); }
+.ficha tr:last-child th, .ficha tr:last-child td { border-bottom: 0; }
+code { font-family: var(--mono); font-size: .88em; background-color: var(--raised);
+       color: var(--ink); padding: 2px 6px; border-radius: 3px; }
+
+/* ---------- cierre ---------- */
+.cierre { background-color: var(--panel); color: #fff; padding: 56px 0; }
+.cierre h2 { color: #fff; }
+.cierre p { color: rgba(255,255,255,.84); }
+.cierre .hero__cta { margin-top: 26px; }
+
+.pie { padding: 26px 0 44px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+.pie a { color: var(--ink-3); }

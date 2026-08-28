@@ -56,7 +56,7 @@
      atajo para quien prefiere que se lo muestren en vez de tipear. */
   var PASOS = [
     {
-      pag: "index.html",
+      pag: "plataforma.html",
       titulo: "Esto es lo que usa el equipo del taller",
       texto: "Tres pantallas: cotizar, agendar y recibir el vehículo. Vamos a recorrer " +
              "el camino completo de un auto, de la consulta hasta la orden de trabajo.",
@@ -300,9 +300,8 @@
   function reiniciar() {
     try { localStorage.removeItem(CERRADO); } catch (e) {}
     guardarPaso(0);
-    if (location.pathname.split("/").pop() !== "index.html" &&
-        location.pathname.split("/").pop() !== "") {
-      location.href = "index.html";
+    if (location.pathname.split("/").pop() !== "plataforma.html") {
+      location.href = "plataforma.html";
     } else { pintar(); }
   }
   window.DEMO_TUTORIAL = { reiniciar: reiniciar, pintar: pintar };

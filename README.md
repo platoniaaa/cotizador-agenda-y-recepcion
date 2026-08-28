@@ -6,6 +6,9 @@ plataforma funcionando sin conectarla a ningún sistema.
 
 **Ver la demostración:** https://platoniaaa.github.io/cotizador-agenda-y-recepcion/
 
+La dirección abre una página de presentación con la información de la plataforma
+y sus funcionalidades. Desde ahí se entra a la demostración con un botón.
+
 ## Recorrido guiado
 
 Dentro de la demostración, el botón **Recorrido guiado** de la barra superior lleva

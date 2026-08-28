@@ -317,13 +317,13 @@
     var params = new URLSearchParams(location.search);
 
 
-    var next = params.get("next") || "index.html";
+    var next = params.get("next") || "plataforma.html";
 
 
     // evita bucles: nunca volver al propio login
 
 
-    if (/login\.html/i.test(next)) next = "index.html";
+    if (/login\.html/i.test(next)) next = "plataforma.html";
 
 
 
