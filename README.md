@@ -1,6 +1,7 @@
-# Plataforma de Postventa — demostración
+# Plataforma de Postventa para automotoras — demostración
 
-Cotizador, agenda y recepción de vehículos para un taller de servicio.
+Cotizador, agenda y recepción de vehículos para **automotoras y concesionarios
+multimarca con taller de postventa propio**.
 Esta es una **demostración con datos de ejemplo**, pensada para mostrar la
 plataforma funcionando sin conectarla a ningún sistema.
 

@@ -116,6 +116,16 @@ body {
 .hero__nav { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.6); }
 .hero__nav a { color: rgba(255,255,255,.82); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); }
 .hero__nav a:hover { color: #fff; border-color: #fff; }
+/* El nicho, sobre el título: quien abre la página tiene que saber en los
+   primeros segundos si esto es para él. Va en ocre y no en blanco tenue para
+   que se lea como una etiqueta y no como un subtítulo más. */
+.hero__nicho {
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: #e7bd77;
+  margin: 0 0 14px;
+}
+
 .hero h1 {
   font-family: var(--display); font-weight: 800;
   font-size: clamp(34px, 6vw, 56px); line-height: 1.03; letter-spacing: -.024em;
@@ -204,3 +214,23 @@ code { font-family: var(--mono); font-size: .88em; background-color: var(--raise
 
 .pie { padding: 26px 0 44px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
 .pie a { color: var(--ink-3); }
+
+/* ---------- para quién es ---------- */
+.publico { display: grid; gap: 22px; margin: 26px 0 4px; }
+@media (min-width: 720px) { .publico { grid-template-columns: repeat(3, 1fr); gap: 26px; } }
+.publico > div { padding-top: 14px; border-top: 2px solid var(--accent); }
+.publico h3 { margin: 0 0 5px; font-size: 16.5px; }
+.publico p { margin: 0; font-size: 15px; color: var(--ink-2); }
+
+/* Delimitar el alcance es parte de decir a quién le sirve: un producto que
+   dice servir para todo no le sirve a nadie en particular. */
+.acota {
+  margin-top: 24px; padding: 16px 18px;
+  background-color: var(--raised); border-radius: 6px;
+  font-size: 15px; color: var(--ink-2);
+}
+.acota strong { color: var(--ink); }
+.acota--origen {
+  background-color: transparent; padding: 0 0 0 18px; margin-top: 18px;
+  border-left: 2px solid var(--line); font-style: italic; font-size: 14.5px;
+}
