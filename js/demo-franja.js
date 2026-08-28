@@ -25,11 +25,19 @@
       '<span class="demoFranja__t">Demostración</span>' +
       '<span class="demoFranja__d">Datos de ejemplo. Prueba lo que quieras: ' +
       'nada se guarda fuera de tu navegador.</span>' +
+      '<button type="button" id="demoTour" class="demoFranja__b">Recorrido guiado</button>' +
       '<a href="LEEME.html" target="_blank" class="demoFranja__b">Cómo probarla</a>' +
       '<button type="button" id="demoReset" class="demoFranja__b">Empezar de nuevo</button>';
     document.body.insertBefore(f, document.body.firstChild);
+    document.getElementById("demoTour").addEventListener("click", function () {
+      if (window.DEMO_TUTORIAL) window.DEMO_TUTORIAL.reiniciar();
+    });
     document.getElementById("demoReset").addEventListener("click", function () {
       if (confirm("Vuelve a los datos de ejemplo iniciales y se pierde lo que hayas hecho. ¿Seguir?")) {
+        try {
+          localStorage.removeItem("demoTutorialPaso");
+          localStorage.removeItem("demoTutorialCerrado");
+        } catch (e) {}
         window.DEMO.reiniciar();
       }
     });

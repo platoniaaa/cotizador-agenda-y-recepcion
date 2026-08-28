@@ -6,6 +6,13 @@ plataforma funcionando sin conectarla a ningún sistema.
 
 **Ver la demostración:** https://platoniaaa.github.io/cotizador-agenda-y-recepcion/
 
+## Recorrido guiado
+
+Dentro de la demostración, el botón **Recorrido guiado** de la barra superior lleva
+paso a paso por el flujo completo —cotizar, agendar, recibir el vehículo y emitir el
+acta— explicando en cada paso qué hacer y por qué importa. Avanza solo cuando detecta
+que el paso se hizo.
+
 ## Qué se puede probar
 
 | | |

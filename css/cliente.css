@@ -511,3 +511,65 @@ button { font-family: inherit; }
 }
 .demo-btn:hover:not(:disabled) { background: #e3eafa; border-color: #001b6c; }
 .demo-btn:disabled { color: #8a97a8; cursor: progress; }
+
+/* ---------------- Recorrido guiado de la demostración ----------------
+   Panel al costado y no un modal encima: si el visitante quiere salirse a
+   mirar otra cosa por su cuenta, puede, y el paso lo sigue esperando. */
+#demoTutor {
+  position: fixed; right: 20px; bottom: 20px; z-index: 9997;
+  width: 340px; max-width: calc(100vw - 32px);
+  background: #fff; color: #16233a;
+  border: 1px solid #ccd6e8; border-radius: 14px;
+  box-shadow: 0 18px 46px rgba(4, 16, 70, .22);
+  font: 14px/1.5 var(--font, system-ui, -apple-system, "Segoe UI", sans-serif);
+  overflow: hidden;
+}
+#demoTutor[hidden] { display: none; }
+.dt-cab { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px 0; }
+.dt-n {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: #7b88a0;
+}
+.dt-x { background: none; border: 0; color: #99a4b8; font-size: 14px; cursor: pointer; padding: 2px 4px; line-height: 1; }
+.dt-x:hover { color: #16233a; }
+.dt-t { margin: 6px 14px 0; font-size: 16.5px; font-weight: 700; line-height: 1.25; color: #001b6c; }
+.dt-d { margin: 7px 14px 0; color: #34405a; }
+.dt-d b { font-weight: 700; color: #16233a; }
+/* el "por qué": es lo que un cliente potencial vino a evaluar */
+.dt-p {
+  margin: 10px 14px 0; padding: 9px 11px;
+  background: #f4f7fd; border-left: 2px solid #a8690a; border-radius: 0 7px 7px 0;
+  font-size: 13px; line-height: 1.5; color: #4a566e;
+}
+.dt-pie { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; padding: 14px; }
+.dt-b {
+  font: 600 13px/1 inherit; cursor: pointer;
+  background: #001b6c; color: #fff; border: 1px solid #001b6c;
+  border-radius: 999px; padding: 9px 16px;
+}
+.dt-b:hover { background: #16309a; border-color: #16309a; }
+.dt-b--ghost { background: transparent; color: #4a566e; border-color: #ccd6e8; }
+.dt-b--ghost:hover { background: #f1f4fa; color: #16233a; border-color: #99a4b8; }
+.dt-b--alt { background: #fff; color: #a8690a; border-color: #e0c48c; }
+.dt-b--alt:hover { background: #fdf6ea; border-color: #a8690a; }
+.dt-barra { height: 3px; background: #e8edf6; }
+.dt-barra i { display: block; height: 100%; background: #a8690a; transition: width .3s ease; }
+
+/* Lo que hay que mirar en este paso. */
+.demo-foco {
+  outline: 3px solid #a8690a !important;
+  outline-offset: 3px;
+  border-radius: 6px;
+  animation: demoLatido 1.8s ease-in-out infinite;
+}
+@keyframes demoLatido {
+  0%, 100% { outline-color: #a8690a; }
+  50%      { outline-color: rgba(168, 105, 10, .28); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .demo-foco { animation: none; }
+  .dt-barra i { transition: none; }
+}
+@media (max-width: 560px) {
+  #demoTutor { right: 10px; left: 10px; bottom: 10px; width: auto; }
+}
