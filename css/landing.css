@@ -110,7 +110,39 @@ body {
 @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
 
 /* ---------- portada ---------- */
-.hero { background-color: var(--panel); color: #fff; padding: 30px 0 62px; }
+/* ---------- hero con carrusel de fondo ----------
+   Tres fotos que se funden una en otra detrás del texto. El velo degradado va
+   ENCIMA de las fotos y DEBAJO del texto: sin él, el blanco del titular queda
+   sobre la pared gris clara de las fotos y no se lee. Las fotos son
+   decorativas (aria-hidden); el contenido no depende de ellas. */
+.hero { position: relative; overflow: hidden;
+  background-color: var(--panel); color: #fff; padding: 30px 0 62px; }
+.hero__fotos { position: absolute; inset: 0; z-index: 0; }
+.hero__foto { position: absolute; inset: 0;
+  background-size: cover; background-position: 72% center; background-repeat: no-repeat;
+  opacity: 0; transition: opacity 1.1s ease; }
+.hero__foto.is-on { opacity: 1; }
+/* El velo: denso a la izquierda -donde va el texto-, casi limpio a la derecha
+   -donde están las personas-. Mismo criterio que el banner de agendamiento. */
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      rgba(0,14,48,.93) 0%, rgba(0,14,48,.86) 38%, rgba(0,14,48,.55) 62%,
+      rgba(0,14,48,.20) 84%, rgba(0,14,48,.08) 100%),
+    linear-gradient(0deg, rgba(0,14,48,.5) 0%, rgba(0,14,48,0) 40%); }
+.hero > .wrap { position: relative; z-index: 2; }
+/* Puntos para saltar entre fotos y ver que hay más de una. */
+.hero__dots { position: absolute; z-index: 3; left: 0; right: 0; bottom: 16px;
+  display: flex; justify-content: center; gap: 9px; }
+.hero__dot { width: 9px; height: 9px; border-radius: 50%; cursor: pointer;
+  border: 0; padding: 0; background: rgba(255,255,255,.4); transition: background .2s, width .2s; }
+.hero__dot:hover { background: rgba(255,255,255,.7); }
+.hero__dot.is-on { background: #fff; width: 22px; border-radius: 999px; }
+.hero__dot:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+@media (max-width: 700px) { .hero__foto { background-position: 78% center; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero__foto { transition: none; }
+}
 .hero__barra { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 52px; }
 .hero__logo { height: 34px; width: auto; filter: brightness(0) invert(1); }
 .hero__nav { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.6); }
@@ -127,13 +159,14 @@ body {
 }
 
 .hero h1 {
+  text-shadow: 0 1px 14px rgba(0,10,40,.5);
   font-family: var(--display); font-weight: 800;
   font-size: clamp(34px, 6vw, 56px); line-height: 1.03; letter-spacing: -.024em;
   margin: 0 0 20px; text-wrap: balance;
 }
 .hero__lead {
   font-size: clamp(18px, 2.3vw, 21px); line-height: 1.5;
-  color: rgba(255,255,255,.85); margin: 0 0 32px; max-width: 34em;
+  color: rgba(255,255,255,.85); margin: 0 0 32px; text-shadow: 0 1px 10px rgba(0,10,40,.45); max-width: 34em;
 }
 .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .hero__nota { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); margin: 18px 0 0; }

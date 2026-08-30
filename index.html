@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/landing.css?v=carrusel1">
 </head>
 <body>
 
@@ -19,6 +19,13 @@
      ya sabe lo que busca no tiene por qué leerse la página entera para llegar
      a probarla. -->
 <header class="hero">
+  <!-- Carrusel de fondo. Las fotos son decorativas: el texto se lee igual sin
+       ellas, y por eso van aria-hidden. La lógica está en js/hero-carrusel.js. -->
+  <div class="hero__fotos" id="heroFotos" aria-hidden="true">
+    <div class="hero__foto is-on" style="background-image:url('img/banner/banner-1.jpg')"></div>
+    <div class="hero__foto" style="background-image:url('img/banner/banner-2.jpg')"></div>
+    <div class="hero__foto" style="background-image:url('img/banner/banner-3.jpg')"></div>
+  </div>
   <div class="wrap">
     <div class="hero__barra">
       <img class="hero__logo" src="img/logo.png" alt="Postventa" width="704" height="158">
@@ -37,7 +44,9 @@
     </div>
     <p class="hero__nota">Funciona de verdad, con datos de ejemplo. No hay que registrarse.</p>
   </div>
+  <div class="hero__dots" id="heroDots" role="tablist" aria-label="Fotos del taller"></div>
 </header>
+<script src="js/hero-carrusel.js?v=carrusel1"></script>
 
 <section class="alt">
   <div class="wrap">
