@@ -1006,3 +1006,12 @@ table.grid td.slot.over { background: var(--tint); }
   background: #fdf0f0; border: 1px solid #f0c4c8; border-radius: 8px;
 }
 .rc-cli-acciones { grid-column: 1 / -1; display: flex; gap: 9px; justify-content: flex-end; margin-top: 4px; }
+
+/* Chips de patentes de ejemplo (solo la demostración). */
+.demo-patentes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.demo-patentes__t { font-size: 12.5px; color: #6e7d91; margin-right: 2px; }
+.demo-chip { font: 500 13px/1 inherit; color: #16233a;
+  background: #eef2fb; border: 1px solid #d3ddf4; border-radius: 999px;
+  padding: 8px 13px; cursor: pointer; }
+.demo-chip b { color: #001b6c; letter-spacing: .5px; }
+.demo-chip:hover { background: #e2e9f8; border-color: #001b6c; }
